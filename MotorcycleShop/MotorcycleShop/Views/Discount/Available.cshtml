@@ -1,0 +1,140 @@
+﻿@model List<MotorcycleShop.Models.Discount>
+
+@{
+    ViewData["Title"] = "Available Discounts";
+}
+
+<div class="container mt-5">
+    <h2 class="text-white mb-4">
+        <i class="fas fa-tag text-warning"></i> Available Discounts
+    </h2>
+
+    @if (!Model.Any())
+    {
+        <div class="dark-card text-center">
+            <i class="fas fa-ticket-alt fa-2x mb-2 text-warning"></i>
+            <p class="mb-0">No active discounts available at the moment</p>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var discount in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="dark-card h-100 d-flex flex-column">
+
+                        <!-- HEADER -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0 text-warning">
+                                @discount.DiscountName
+                            </h5>
+                            <span class="badge bg-success">
+                                Active
+                            </span>
+                        </div>
+
+                        <!-- VALUE -->
+                        <div class="discount-value mb-2">
+                            @if (discount.DiscountType == DiscountType.Percentage)
+                            {
+                                <span class="value">@discount.DiscountValue%</span>
+                                <small>OFF</small>
+                            }
+                            else
+                            {
+                                <span class="value">
+                                    @discount.DiscountValue.ToString("N0") đ
+                                </span>
+                                <small>OFF</small>
+                            }
+                        </div>
+
+                        <p class="text-muted flex-grow-1">
+                            @discount.Description
+                        </p>
+
+                        <hr class="border-secondary" />
+
+                        <!-- INFO -->
+                        <div class="small text-muted mb-3">
+                            <div>
+                                <i class="fas fa-calendar-alt"></i>
+                                Valid until: @discount.DateEnd.ToString("dd/MM/yyyy")
+                            </div>
+                            <div>
+                                <i class="fas fa-chart-line"></i>
+                                Usage: @discount.UsedCount /
+                                @(discount.UsageLimit?.ToString() ?? "Unlimited")
+                            </div>
+                        </div>
+
+                        <!-- CODE -->
+                        <div class="d-flex align-items-center gap-2 mt-auto">
+                            <span class="badge bg-dark fs-6 flex-grow-1 text-center code">
+                                @discount.Code
+                            </span>
+                            <button class="btn btn-outline-warning copy-code"
+                                    data-code="@discount.Code">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .dark-card {
+        background: #151515;
+        border-radius: 18px;
+        padding: 22px;
+        color: #fff;
+        box-shadow: 0 0 0 1px rgba(255,255,255,.06);
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+        .dark-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.5);
+        }
+
+    .discount-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ffc107;
+    }
+
+        .discount-value small {
+            font-size: 1rem;
+            margin-left: 6px;
+        }
+
+    .code {
+        letter-spacing: 1px;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.copy-code').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const code = this.dataset.code;
+                navigator.clipboard.writeText(code).then(() => {
+                    const icon = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.classList.remove('btn-outline-warning');
+                    this.classList.add('btn-warning');
+
+                    setTimeout(() => {
+                        this.innerHTML = icon;
+                        this.classList.remove('btn-warning');
+                        this.classList.add('btn-outline-warning');
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+}

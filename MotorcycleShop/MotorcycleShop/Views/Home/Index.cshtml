@@ -1,0 +1,267 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content text-center">
+        <h1 data-aos="fade-up">MOTORCYCLE SHOP</h1>
+        <p data-aos="fade-up" data-aos-delay="150">
+            Power · Speed · Genuine Parts
+        </p>
+        <a asp-controller="Products" asp-action="Index"
+           class="btn btn-danger btn-lg mt-4 px-5"
+           data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-bolt"></i> Shop Now
+        </a>
+    </div>
+</section>
+
+<!-- ================= FEATURED ================= -->
+<section class="section-dark">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-right">🔥 Featured Products</h2>
+
+        <div class="row g-4 justify-content-center">
+            @foreach (var product in ViewBag.FeaturedProducts)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up">
+                    <div class="product-card">
+
+                        <span class="badge-hot">HOT</span>
+
+                        <div class="product-img">
+                            <img src="@product.ImageUrl"
+                                 loading="lazy"
+                                 alt="@product.Name" />
+                        </div>
+
+                        <div class="product-body">
+                            <h5>@product.Name</h5>
+                            <p class="brand">@product.BrandName</p>
+                            <p class="price">@product.Price.ToString("N0") đ</p>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="@product.ProductId"
+                               class="btn btn-outline-danger btn-sm w-100">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ================= CATEGORY ================= -->
+<section class="section-dark">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-left">⚙ Product Categories</h2>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5" data-aos="zoom-in">
+                <a asp-controller="Products" asp-action="Index"
+                   asp-route-category="Motorcycle"
+                   class="category-card">
+                    <i class="fas fa-motorcycle"></i>
+                    <h4>Motorcycles</h4>
+                    <p>High performance machines</p>
+                </a>
+            </div>
+
+            <div class="col-md-5" data-aos="zoom-in" data-aos-delay="150">
+                <a asp-controller="Products" asp-action="Index"
+                   asp-route-category="SparePart"
+                   class="category-card">
+                    <i class="fas fa-gears"></i>
+                    <h4>Spare Parts</h4>
+                    <p>Genuine · Durable · Best price</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= BRANDS ================= -->
+@if (ViewBag.Brands != null && ((List<Brand>)ViewBag.Brands).Count > 0)
+{
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">🏁 Our Brands</h2>
+
+            <div class="row g-4 justify-content-center">
+                @foreach (var brand in ViewBag.Brands)
+                {
+                    <div class="col-lg-2 col-md-3 col-4" data-aos="flip-left">
+                        <div class="brand-card">
+                            @if (!string.IsNullOrEmpty(brand.LogoUrl))
+                            {
+                                <img src="@brand.LogoUrl" alt="@brand.Name" />
+                            }
+                            else
+                            {
+                                <span>@brand.Name</span>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+<!-- ================= STYLE ================= -->
+<style>
+    /* ===== HERO ===== */
+    .hero {
+        position: relative;
+        background: url('/images/hero-bg.jpg') center/cover no-repeat;
+        padding: 140px 0;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.9));
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+        font-weight: 900;
+        letter-spacing: 3px;
+        color: #fff;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        color: #ccc;
+    }
+
+    /* ===== SECTION ===== */
+    .section-dark {
+        background: #0f0f0f;
+        padding: 80px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        font-weight: 800;
+        margin-bottom: 50px;
+        color: #fff;
+    }
+
+    /* ===== PRODUCT ===== */
+    .product-card {
+        background: #1a1a1a;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: .4s;
+        position: relative;
+    }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,.8);
+        }
+
+    .badge-hot {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: #c00000;
+        color: #fff;
+        padding: 4px 10px;
+        font-size: .7rem;
+        border-radius: 20px;
+        font-weight: 700;
+    }
+
+    .product-img {
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+    }
+
+        .product-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+    .product-body {
+        padding: 18px;
+        text-align: center;
+    }
+
+        .product-body h5 {
+            color: #fff;
+        }
+
+        .product-body .brand {
+            font-size: .85rem;
+            color: #aaa;
+        }
+
+        .product-body .price {
+            color: #ff4d4d;
+            font-weight: 800;
+        }
+
+    /* ===== CATEGORY ===== */
+    .category-card {
+        display: block;
+        padding: 55px 30px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, #1a1a1a, #111);
+        color: #fff;
+        text-align: center;
+        transition: .4s;
+    }
+
+        .category-card i {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: #ff4d4d;
+        }
+
+        .category-card:hover {
+            background: linear-gradient(135deg, #c00000, #700000);
+            transform: translateY(-10px);
+        }
+
+            .category-card:hover i {
+                color: #fff;
+            }
+
+    /* ===== BRAND ===== */
+    .brand-card {
+        background: #1a1a1a;
+        height: 120px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .3s;
+    }
+
+        .brand-card img {
+            max-height: 65px;
+            filter: grayscale(100%);
+            transition: .3s;
+        }
+
+        .brand-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+</style>

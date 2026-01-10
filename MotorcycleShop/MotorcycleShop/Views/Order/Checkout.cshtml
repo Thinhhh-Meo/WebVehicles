@@ -1,0 +1,456 @@
+﻿@model MotorcycleShop.Controllers.CheckoutViewModel
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container mt-5">
+    <h2 class="text-white mb-4">
+        <i class="fas fa-credit-card text-danger"></i> Checkout
+    </h2>
+
+    <!-- Messages -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row g-4">
+        <!-- LEFT: FORM -->
+        <div class="col-lg-8">
+            <form method="post" id="checkoutForm">
+                @Html.AntiForgeryToken()
+
+                <!-- SHIPPING INFO -->
+                <div class="dark-card mb-4">
+                    <h5 class="mb-3">
+                        <i class="fas fa-shipping-fast text-danger"></i> Shipping Information
+                    </h5>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="FullName" class="form-label"></label>
+                            <input asp-for="FullName" class="form-control dark-input" required>
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control dark-input" required>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PhoneNumber" class="form-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control dark-input" required>
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label"></label>
+                        <textarea asp-for="Address" class="form-control dark-input" rows="3" required></textarea>
+                        <span asp-validation-for="Address" class="text-danger small"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Note" class="form-label"></label>
+                        <textarea asp-for="Note" class="form-control dark-input" rows="2"
+                                  placeholder="Any special instructions..."></textarea>
+                    </div>
+                </div>
+
+                <!-- PAYMENT -->
+                <div class="dark-card mb-4">
+                    <h5 class="mb-3">
+                        <i class="fas fa-money-bill-wave text-danger"></i> Payment Method
+                    </h5>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input"
+                               type="radio"
+                               asp-for="PaymentMethod"
+                               value="@PaymentMethod.COD"
+                               id="codPayment"
+                               checked>
+                        <label class="form-check-label" for="codPayment">
+                            <strong>Cash on Delivery (COD)</strong><br />
+                            <small class="text-muted">Pay when receiving goods</small>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="radio"
+                               asp-for="PaymentMethod"
+                               value="@PaymentMethod.BankTransfer"
+                               id="bankPayment">
+                        <label class="form-check-label" for="bankPayment">
+                            <strong>Bank Transfer</strong><br />
+                            <small class="text-muted">
+                                Account: 123456789<br>
+                                Bank: Vietcombank<br>
+                                Name: MOTORCYCLE SHOP
+                            </small>
+                        </label>
+                    </div>
+                    <span asp-validation-for="PaymentMethod" class="text-danger small"></span>
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="d-flex justify-content-between">
+                    <a href="@Url.Action("Index", "Cart")" class="btn btn-outline-light">
+                        <i class="fas fa-arrow-left"></i> Back to Cart
+                    </a>
+                    <button type="submit" class="btn btn-danger btn-lg" id="placeOrderBtn">
+                        <i class="fas fa-check"></i> Place Order
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- RIGHT: ORDER SUMMARY -->
+        <div class="col-lg-4">
+            <div class="dark-card sticky-top" style="top:90px">
+                <h5 class="mb-3">
+                    <i class="fas fa-receipt text-danger"></i> Order Summary
+                </h5>
+
+                <!-- Cart Items -->
+                @if (Model.CartItems.Any())
+                {
+                    <div class="mb-3" style="max-height: 300px; overflow-y: auto;">
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                <div class="me-2">
+                                    <strong class="d-block">@item.Product.Name</strong>
+                                    <small class="text-muted">@item.Quantity x @item.Product.Price.ToString("N0") đ</small>
+                                </div>
+                                <span class="text-nowrap">@((item.Quantity * item.Product.Price).ToString("N0")) đ</span>
+                            </div>
+                        }
+                    </div>
+                    <hr />
+                }
+                else
+                {
+                    <div class="alert alert-warning mb-3">
+                        <i class="fas fa-shopping-cart"></i> No items in cart
+                    </div>
+                }
+
+                <!-- DISCOUNT CODE -->
+                <div class="mb-4">
+                    <label class="form-label">Discount Code</label>
+                    <div class="input-group">
+                        <input type="text"
+                               class="form-control dark-input"
+                               placeholder="e.g., OPENING20"
+                               id="discountCodeInput"
+                               value="@Model.DiscountCode">
+
+                        <button type="button"
+                                class="btn btn-outline-danger"
+                                id="applyDiscountBtn">
+                            <i class="fas fa-tag"></i> Apply
+                        </button>
+                    </div>
+
+                    <!-- Hidden field for discount code -->
+                    <input type="hidden" asp-for="DiscountCode" id="discountCodeHidden" />
+                    <input type="hidden" asp-for="DiscountAmount" id="discountAmountHidden" />
+                    <input type="hidden" asp-for="FinalPrice" id="finalPriceHidden" />
+                    <input type="hidden" asp-for="TotalPrice" id="totalPriceHidden" />
+
+                    <!-- Discount message display -->
+                    <div id="discountMessage" class="mt-2 small"></div>
+                    <span asp-validation-for="DiscountCode" class="text-danger small"></span>
+                </div>
+
+                <!-- PRICE SUMMARY -->
+                <div class="mt-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal:</span>
+                        <span id="subtotalPrice">@Model.TotalPrice.ToString("N0") đ</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2" id="discountRow"
+                         style="@(Model.DiscountAmount > 0 ? "" : "display:none;")">
+                        <span class="text-success">Discount:</span>
+                        <span class="text-success" id="discountAmount">-@Model.DiscountAmount.ToString("N0") đ</span>
+                    </div>
+
+                    <hr class="my-3">
+
+                    <div class="d-flex justify-content-between fw-bold fs-5 text-danger">
+                        <span>Final Amount</span>
+                        <span id="finalPrice">@Model.FinalPrice.ToString("N0") đ</span>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .dark-card {
+            background: #151515;
+            border-radius: 18px;
+            padding: 24px;
+            color: #fff;
+            box-shadow: 0 0 0 1px rgba(255,255,255,.05);
+            transition: all 0.3s ease;
+        }
+
+            .dark-card:hover {
+                box-shadow: 0 5px 20px rgba(220, 53, 69, 0.2);
+            }
+
+        .dark-input {
+            background: #1f1f1f;
+            border: none;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+            .dark-input:focus {
+                background: #1f1f1f;
+                color: #fff;
+                box-shadow: 0 0 0 2px #dc3545;
+                border: none;
+            }
+
+        .text-success {
+            color: #28a745 !important;
+        }
+
+        .text-danger {
+            color: #dc3545 !important;
+        }
+
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+
+        .btn-outline-danger {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+            .btn-outline-danger:hover {
+                background-color: #dc3545;
+                color: white;
+            }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1f1f1f;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #dc3545;
+            border-radius: 10px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function() {
+            // Variables
+        var originalTotal = parseFloat('@Model.TotalPrice.ToString(CultureInfo.InvariantCulture)');
+        var currentDiscount = parseFloat('@Model.DiscountAmount.ToString(CultureInfo.InvariantCulture)');
+        var discountCode = '@Html.Raw(Model.DiscountCode ?? "")';
+        var isApplied = @((Model.DiscountAmount > 0).ToString().ToLower());
+
+
+            console.log('Initial values:', {
+                originalTotal: originalTotal,
+                currentDiscount: currentDiscount,
+                discountCode: discountCode,
+                isApplied: isApplied
+            });
+
+            // Format number function
+            function formatNumber(num) {
+                if (isNaN(num) || num === null) return '0 đ';
+                return new Intl.NumberFormat('vi-VN').format(num) + ' đ';
+            }
+
+            // Show discount message function
+            function showDiscountMessage(message, type) {
+                var color = type === 'success' ? 'text-success' : 'text-danger';
+                var icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+                $('#discountMessage').html(`
+                    <div class="${color}">
+                        <i class="fas ${icon}"></i> ${message}
+                    </div>
+                `);
+            }
+
+            // Reset discount function
+            function resetDiscount() {
+                console.log('Resetting discount...');
+                currentDiscount = 0;
+                discountCode = '';
+                isApplied = false;
+
+                // Reset UI
+                $('#discountRow').hide();
+                $('#discountAmount').text('-' + formatNumber(0));
+                $('#finalPrice').text(formatNumber(originalTotal));
+                $('#subtotalPrice').text(formatNumber(originalTotal));
+
+                // Reset hidden fields
+                $('#discountCodeHidden').val('');
+                $('#discountAmountHidden').val(0);
+                $('#finalPriceHidden').val(originalTotal);
+                $('#totalPriceHidden').val(originalTotal);
+
+                console.log('Discount reset complete');
+                $('#discountMessage').empty();
+            }
+
+            // Initialize discount display
+            if (currentDiscount > 0) {
+                $('#discountRow').show();
+                $('#discountAmount').text('-' + formatNumber(currentDiscount));
+                $('#discountCodeInput').val(discountCode);
+            }
+
+            // Apply Discount Button - AJAX
+            $('#applyDiscountBtn').click(function() {
+                var code = $('#discountCodeInput').val().trim();
+                console.log('Applying discount code:', code);
+
+                if (!code) {
+                    showDiscountMessage('Please enter discount code', 'danger');
+                    return;
+                }
+
+                // Show loading
+                var $btn = $(this);
+                var originalText = $btn.html();
+                $btn.html('<span class="spinner-border spinner-border-sm"></span> Applying...');
+                $btn.prop('disabled', true);
+
+                // Clear previous message
+                $('#discountMessage').empty();
+
+                // AJAX call to validate discount
+                $.ajax({
+                    url: '@Url.Action("ValidateDiscount", "Order")',
+                    type: 'GET',
+                    data: { code: code },
+                    success: function(response) {
+                        console.log('AJAX Response:', response);
+
+                        if (response.success) {
+                            // Update variables
+                            currentDiscount = parseFloat(response.discountAmount) || 0;
+                            discountCode = response.code || '';
+                            isApplied = true;
+
+                            console.log('Updated values:', {
+                                currentDiscount: currentDiscount,
+                                discountCode: discountCode,
+                                isApplied: isApplied,
+                                finalPrice: response.finalPrice,
+                                totalPrice: response.totalPrice
+                            });
+
+                            // Update UI
+                            $('#discountRow').show();
+                            $('#discountAmount').text('-' + formatNumber(currentDiscount));
+                            $('#finalPrice').text(formatNumber(response.finalPrice));
+                            $('#subtotalPrice').text(formatNumber(originalTotal));
+
+                            // Update hidden fields
+                            $('#discountCodeHidden').val(discountCode);
+                            $('#discountAmountHidden').val(currentDiscount);
+                            $('#finalPriceHidden').val(response.finalPrice);
+                            $('#totalPriceHidden').val(originalTotal);
+
+                            showDiscountMessage(response.message, 'success');
+                        } else {
+                            // Reset discount
+                            resetDiscount();
+                            showDiscountMessage(response.message, 'danger');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', error);
+                        console.error('Status:', status);
+                        console.error('XHR:', xhr);
+
+                        showDiscountMessage('Error validating discount code. Please try again.', 'danger');
+                        resetDiscount();
+                    },
+                    complete: function() {
+                        $btn.html(originalText);
+                        $btn.prop('disabled', false);
+                    }
+                });
+            });
+
+            // Reset discount when user changes code
+            $('#discountCodeInput').on('input', function() {
+                var currentCode = $(this).val().trim();
+                console.log('Code input changed:', currentCode);
+
+                if (currentCode !== discountCode && isApplied) {
+                    console.log('Code changed, resetting discount...');
+                    resetDiscount();
+                    $('#discountMessage').empty();
+                }
+            });
+
+            // Form submission
+            $('#checkoutForm').submit(function() {
+                console.log('Submitting form...');
+
+                // Đảm bảo discount code được submit
+                var currentCode = $('#discountCodeInput').val().trim();
+                $('#discountCodeHidden').val(currentCode);
+
+                // Log các giá trị trước khi submit
+                console.log('Form submit values:', {
+                    discountCode: currentCode,
+                    discountAmount: currentDiscount,
+                    finalPrice: $('#finalPriceHidden').val(),
+                    totalPrice: $('#totalPriceHidden').val()
+                });
+
+                // Show loading
+                $('#placeOrderBtn').html('<span class="spinner-border spinner-border-sm"></span> Processing...');
+                $('#placeOrderBtn').prop('disabled', true);
+
+                return true; // Cho phép submit
+            });
+        });
+    </script>
+}

@@ -1,0 +1,102 @@
+﻿@model MotorcycleShop.Models.Feedback
+
+@{
+    ViewData["Title"] = "Create Feedback";
+}
+
+<div class="container mt-5">
+    <h2 class="text-white mb-4">
+        <i class="fas fa-star text-warning"></i> Write a Review
+    </h2>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form asp-action="Create"
+                  asp-route-productId="@Model.ProductId"
+                  method="post"
+                  class="dark-card">
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" asp-for="ProductId" />
+
+                <div class="mb-4">
+                    <label class="mb-2">Your Rating</label>
+                    <div class="rating-stars">
+                        @for (int i = 5; i >= 1; i--)
+                        {
+                            <input type="radio" asp-for="Rating" value="@i" id="star-@i" />
+                            <label for="star-@i">★</label>
+                        }
+                    </div>
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>Your Review</label>
+                    <textarea asp-for="Description"
+                              rows="5"
+                              class="form-control dark-input"
+                              placeholder="Share your experience..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-controller="Products"
+                       asp-action="Details"
+                       asp-route-id="@Model.ProductId"
+                       class="btn btn-outline-light">
+                        Cancel
+                    </a>
+                    <button class="btn btn-danger">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dark-card {
+        background: #151515;
+        border-radius: 18px;
+        padding: 24px;
+        color: #fff;
+        box-shadow: 0 0 0 1px rgba(255,255,255,.06);
+    }
+
+    .dark-input {
+        background: #1f1f1f;
+        border: none;
+        color: #fff;
+    }
+
+        .dark-input:focus {
+            background: #1f1f1f;
+            color: #fff;
+            box-shadow: 0 0 0 1px #dc3545;
+        }
+
+    .rating-stars {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 2.2rem;
+            color: #444;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+            .rating-stars input:checked ~ label,
+            .rating-stars label:hover,
+            .rating-stars label:hover ~ label {
+                color: #ffc107;
+            }
+</style>

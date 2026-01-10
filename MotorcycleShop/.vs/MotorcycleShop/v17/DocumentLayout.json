@@ -1,0 +1,1237 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\order\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\order\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\controllers\\user\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\controllers\\user\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\controllers\\user\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\controllers\\user\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\order\\myorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\order\\myorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\controllers\\user\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\controllers\\user\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\userdiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\userdiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\viewmodels\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\viewmodels\\checkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\discount\\available.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\discount\\available.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\order\\checkout.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\order\\checkout.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\products\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\products\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\account\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\account\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\account\\profile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\account\\profile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\feedback\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\feedback\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\feedback\\myfeedbacks.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\feedback\\myfeedbacks.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\account\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\account\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\products\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\products\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\securityquestion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\securityquestion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\resetpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\resetpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\securityquestion.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\securityquestion.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\forgotpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\forgotpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\areas\\identity\\pages\\account\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\areas\\identity\\pages\\account\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\viewmodels\\editprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\viewmodels\\editprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\controllers\\user\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\controllers\\user\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\viewmodels\\changepasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\viewmodels\\changepasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\account\\editprofile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\account\\editprofile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\order\\myorders.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\order\\myorders.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\feedback\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\feedback\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\viewmodels\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\viewmodels\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\controllers\\user\\feedbackcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\controllers\\user\\feedbackcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\controllers\\user\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\controllers\\user\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\viewmodels\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\viewmodels\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\viewmodels\\cartviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\viewmodels\\cartviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251230151506_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MotorcycleShop\\Migrations\\20251230151506_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251230151332_UpdateUserFields.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MotorcycleShop\\Migrations\\20251230151332_UpdateUserFields.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251229082630_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MotorcycleShop\\Migrations\\20251229082630_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\motorcycleshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\motorcycleshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\sparepart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\sparepart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\promotion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\promotion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\models\\accessory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\models\\accessory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|c:\\users\\admin\\source\\repos\\motorcycleshop\\motorcycleshop\\migrations\\20260109084203_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA29C4E6-D4AD-4A12-A1E1-17FACEC0149A}|MotorcycleShop\\MotorcycleShop.csproj|solutionrelative:motorcycleshop\\migrations\\20260109084203_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Order\\Checkout.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\Checkout.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Order\\Checkout.cshtml",
+              "ViewState": "AgIAAKUBAAAAAAAAAAAgwLgBAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T02:45:03.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Details.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Products\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Details.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Products\\Details.cshtml",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAACMAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T14:07:24.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MyOrders.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\MyOrders.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Order\\MyOrders.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\MyOrders.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Order\\MyOrders.cshtml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAcwEQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T03:33:28.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAowAoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:40:59.334Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Program.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Program.cs",
+              "RelativeToolTip": "MotorcycleShop\\Program.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAiwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:57:12.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Discount.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Discount.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Discount.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Discount.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Discount.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAA5wDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:42:44.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserDiscount.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\UserDiscount.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\UserDiscount.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\UserDiscount.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\UserDiscount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T08:31:28.179Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\Details.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Order\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\Details.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Order\\Details.cshtml",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAIwHQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T14:34:29.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DiscountController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\DiscountController.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Controllers\\User\\DiscountController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\DiscountController.cs",
+              "RelativeToolTip": "MotorcycleShop\\Controllers\\User\\DiscountController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAiwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T15:08:59.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\ProductsController.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Controllers\\User\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\ProductsController.cs",
+              "RelativeToolTip": "MotorcycleShop\\Controllers\\User\\ProductsController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAUwE4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T14:10:20.894Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "MotorcycleShop\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAiwNMAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:51:18.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\OrderController.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Controllers\\User\\OrderController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\OrderController.cs",
+              "RelativeToolTip": "MotorcycleShop\\Controllers\\User\\OrderController.cs",
+              "ViewState": "AgIAAEwBAAAAAAAAAAAUwNoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T03:04:44.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "OrderDetail.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\OrderDetail.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\OrderDetail.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\OrderDetail.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\OrderDetail.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAsAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:42:33.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\CartItem.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\CartItem.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\CartItem.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\CartItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:41:53.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Order.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Order.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Order.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowEEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:42:07.472Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Product.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:40:42.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CheckoutViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\CheckoutViewModel.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\ViewModels\\CheckoutViewModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\CheckoutViewModel.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\ViewModels\\CheckoutViewModel.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T03:06:35.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Cart.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Cart.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Cart.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:43:53.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Available.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Discount\\Available.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Discount\\Available.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Discount\\Available.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Discount\\Available.cshtml",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAcwIwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T15:06:09.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Checkout.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\Checkout.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Order\\Checkout.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\Checkout.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Order\\Checkout.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T09:40:46.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "20260109084203_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20260109084203_InitialCreate.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Migrations\\20260109084203_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20260109084203_InitialCreate.cs",
+              "RelativeToolTip": "MotorcycleShop\\Migrations\\20260109084203_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T08:42:03.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Products\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Details.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Products\\Details.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T14:22:24.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Feedback.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Feedback.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Feedback.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Feedback.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Feedback.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:43:00.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAcwDEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T13:56:11.999Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAJYAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T14:21:12.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAPQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T13:20:01.143Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Profile.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\Profile.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Account\\Profile.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\Profile.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Account\\Profile.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T16:06:11.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ChangePassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\ChangePassword.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Account\\ChangePassword.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\ChangePassword.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Account\\ChangePassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwAsAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T10:21:56.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "EditProfile.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\EditProfile.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Account\\EditProfile.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\EditProfile.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Account\\EditProfile.cshtml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T10:20:32.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\Profile.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Account\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\Profile.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Account\\Profile.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAcwGQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T10:12:56.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "MyFeedbacks.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Feedback\\MyFeedbacks.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Feedback\\MyFeedbacks.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Feedback\\MyFeedbacks.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Feedback\\MyFeedbacks.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAcwDoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T07:40:15.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Feedback\\Create.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Feedback\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Feedback\\Create.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Feedback\\Create.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAcwFAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T07:40:04.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAJYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-01T12:43:27.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MotorcycleShop\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T13:19:41.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Index.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Products\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Index.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Products\\Index.cshtml",
+              "ViewState": "AgIAALQAAAAAAAAAAAAiwBkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T13:55:46.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Data\\SeedData.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Data\\SeedData.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Data\\SeedData.cs",
+              "RelativeToolTip": "MotorcycleShop\\Data\\SeedData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:57:45.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Products\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Products\\Index.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Products\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T13:54:13.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAIkAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T14:56:17.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwF4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T15:05:37.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T13:49:48.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "SecurityQuestion.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAiwKwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-01T13:49:35.929Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "ResetPasswordConfirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAE8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-01T12:45:04.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ResetPassword.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-01T12:51:06.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "SecurityQuestion.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\SecurityQuestion.cshtml.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAmwDwAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-01T13:52:59.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "ForgotPassword.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA5wDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-01T12:48:22.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAGwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-01T12:45:49.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-01T12:50:54.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "ChangePasswordViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\ChangePasswordViewModel.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\ViewModels\\ChangePasswordViewModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\ChangePasswordViewModel.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\ViewModels\\ChangePasswordViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T10:22:36.211Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAcwMoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T14:56:15.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\AccountController.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Controllers\\User\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\AccountController.cs",
+              "RelativeToolTip": "MotorcycleShop\\Controllers\\User\\AccountController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAkwDQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T10:14:38.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "ScaffoldingReadMe.txt",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\ScaffoldingReadMe.txt",
+              "RelativeDocumentMoniker": "MotorcycleShop\\ScaffoldingReadMe.txt",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\ScaffoldingReadMe.txt",
+              "RelativeToolTip": "MotorcycleShop\\ScaffoldingReadMe.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-12-30T14:56:03.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-01T10:16:40.389Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "EditProfile.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\EditProfile.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Account\\EditProfile.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Account\\EditProfile.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Account\\EditProfile.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-01T08:58:11.643Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "EditProfileViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\EditProfileViewModel.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\ViewModels\\EditProfileViewModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\EditProfileViewModel.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\ViewModels\\EditProfileViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-01T09:22:21.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "MyOrders.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\MyOrders.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Order\\MyOrders.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Order\\MyOrders.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Order\\MyOrders.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T16:16:54.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "ProductViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\ProductViewModel.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\ViewModels\\ProductViewModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\ProductViewModel.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\ViewModels\\ProductViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T14:10:13.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Feedback\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Feedback\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Feedback\\Create.cshtml.cs",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Feedback\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T16:06:07.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T13:58:35.741Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-31T10:53:10.511Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "FeedbackController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\FeedbackController.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Controllers\\User\\FeedbackController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\FeedbackController.cs",
+              "RelativeToolTip": "MotorcycleShop\\Controllers\\User\\FeedbackController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAYwC8AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T03:50:10.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\CartController.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Controllers\\User\\CartController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Controllers\\User\\CartController.cs",
+              "RelativeToolTip": "MotorcycleShop\\Controllers\\User\\CartController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAcwDgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T14:16:40.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\ViewModels\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\ErrorViewModel.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\ViewModels\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T14:01:37.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "CartViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\CartViewModel.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\ViewModels\\CartViewModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\ViewModels\\CartViewModel.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\ViewModels\\CartViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T14:16:57.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "20251230151332_UpdateUserFields.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251230151332_UpdateUserFields.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Migrations\\20251230151332_UpdateUserFields.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251230151332_UpdateUserFields.cs",
+              "RelativeToolTip": "MotorcycleShop\\Migrations\\20251230151332_UpdateUserFields.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T15:13:32.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "20251230151506_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251230151506_InitialCreate.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Migrations\\20251230151506_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251230151506_InitialCreate.cs",
+              "RelativeToolTip": "MotorcycleShop\\Migrations\\20251230151506_InitialCreate.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T15:15:06.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "MotorcycleShop\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T13:18:51.388Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "20251229082630_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251229082630_InitialCreate.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Migrations\\20251229082630_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Migrations\\20251229082630_InitialCreate.cs",
+              "RelativeToolTip": "MotorcycleShop\\Migrations\\20251229082630_InitialCreate.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T08:26:30.455Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "MotorcycleShop.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\MotorcycleShop.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\MotorcycleShop.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\MotorcycleShop.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\MotorcycleShop.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:39:08.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "Brand.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Brand.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Brand.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Brand.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Brand.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:44:35.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "SparePart.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\SparePart.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\SparePart.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\SparePart.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\SparePart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:41:33.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "Report.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Report.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Report.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Report.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Report.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:44:54.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "Promotion.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Promotion.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Promotion.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Promotion.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Promotion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:44:23.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\appsettings.json",
+              "RelativeDocumentMoniker": "MotorcycleShop\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\appsettings.json",
+              "RelativeToolTip": "MotorcycleShop\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-29T06:58:08.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Payment.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Payment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:45:13.281Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "Accessory.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Accessory.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Accessory.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Accessory.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Accessory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:39:44.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "Coupon.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Coupon.cs",
+              "RelativeDocumentMoniker": "MotorcycleShop\\Models\\Coupon.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\Models\\Coupon.cs",
+              "RelativeToolTip": "MotorcycleShop\\Models\\Coupon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T06:44:10.093Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

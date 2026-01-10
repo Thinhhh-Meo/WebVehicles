@@ -1,0 +1,194 @@
+﻿@page
+@model MotorcycleShop.Areas.Identity.Pages.Account.SecurityQuestionModel
+@{
+    ViewData["Title"] = "Security Question";
+}
+
+<div class="security-wrapper">
+
+    <div class="security-card shadow-lg">
+
+        <!-- Left branding/image -->
+        <div class="security-left d-none d-md-flex">
+            <div class="overlay"></div>
+            <div class="brand-content">
+                <h1>MOTORBIKE SHOP</h1>
+                <p>Secure your account</p>
+            </div>
+        </div>
+
+        <!-- Right form -->
+        <div class="security-right">
+            <div class="form-container">
+                <h2 class="fw-bold mb-2">Security Question</h2>
+                <p class="text-muted mb-4">
+                    Answer your security question to continue
+                </p>
+
+                @if (Model.Question != null)
+                {
+                    <h5 class="mb-3 fw-semibold text-dark">@Model.Question</h5>
+
+                    <form method="post">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Answer" class="form-control input-glow" placeholder="Your answer" />
+                            <label asp-for="Answer">Your answer</label>
+                            <span asp-validation-for="Answer" class="text-danger small"></span>
+                        </div>
+
+                        @if (Model.Error != null)
+                        {
+                            <div class="alert alert-danger mt-2 shadow-sm" role="alert">
+                                @Model.Error
+                            </div>
+                        }
+
+                        <button type="submit" class="btn btn-gradient w-100 mt-3">
+                            Verify Answer
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <p class="text-muted">No user selected or user not found.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    /* Body + wrapper */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(120deg, #1a1a1a, #000);
+    }
+
+    .security-wrapper {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    /* Card */
+    .security-card {
+        display: flex;
+        width: 900px;
+        max-width: 95%;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .security-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+        }
+
+    /* Left image + overlay */
+    .security-left {
+        width: 45%;
+        background: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70") center/cover no-repeat;
+        position: relative;
+    }
+
+        .security-left .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+        }
+
+    .brand-content {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        padding: 40px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+        .brand-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .brand-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+    /* Right form */
+    .security-right {
+        width: 55%;
+        padding: 60px 40px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #c00000, #000);
+        color: #fff;
+        font-weight: 700;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(192,0,0,0.4);
+    }
+
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #000, #c00000);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(192,0,0,0.6);
+        }
+
+    .input-glow:focus {
+        border-color: #c00000;
+        box-shadow: 0 0 8px rgba(192,0,0,0.6);
+    }
+
+    .alert {
+        border-radius: 6px;
+    }
+
+    @@media (max-width: 768px) {
+        .security-card
+
+    {
+        flex-direction: column;
+    }
+
+    .security-left {
+        display: none;
+    }
+
+    .security-right {
+        width: 100%;
+        padding: 40px 20px;
+    }
+
+    }
+</style>

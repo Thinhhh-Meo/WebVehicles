@@ -1,0 +1,324 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card shadow-lg">
+
+        <!-- LEFT IMAGE -->
+        <div class="auth-left d-none d-md-flex">
+            <div class="overlay"></div>
+            <div class="brand-content">
+                <h1>MOTORBIKE SHOP</h1>
+                <p>Join the ride today</p>
+            </div>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="auth-right">
+            <div class="form-container">
+
+                <h2 class="fw-bold mb-1">Create Account</h2>
+                <p class="text-muted mb-4">Register to start shopping</p>
+
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row g-3">
+
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </span>
+                                <input asp-for="Input.Email"
+                                       class="form-control"
+                                       placeholder="Email address"
+                                       autocomplete="username" />
+                            </div>
+                            <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Full Name -->
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person-fill"></i>
+                                </span>
+                                <input asp-for="Input.FullName"
+                                       class="form-control"
+                                       placeholder="Full name" />
+                            </div>
+                            <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock-fill"></i>
+                                </span>
+                                <input asp-for="Input.Password"
+                                       type="password"
+                                       class="form-control"
+                                       placeholder="Password"
+                                       autocomplete="new-password" />
+                            </div>
+                            <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock-fill"></i>
+                                </span>
+                                <input asp-for="Input.ConfirmPassword"
+                                       type="password"
+                                       class="form-control"
+                                       placeholder="Confirm password"
+                                       autocomplete="new-password" />
+                            </div>
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </span>
+                                <textarea asp-for="Input.Address"
+                                          class="form-control"
+                                          placeholder="Delivery address"
+                                          rows="2"></textarea>
+                            </div>
+                            <span asp-validation-for="Input.Address" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Age -->
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-calendar-fill"></i>
+                                </span>
+                                <input asp-for="Input.Age"
+                                       type="number"
+                                       min="18"
+                                       max="100"
+                                       class="form-control"
+                                       placeholder="Age" />
+                            </div>
+                            <span asp-validation-for="Input.Age" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-telephone-fill"></i>
+                                </span>
+                                <input asp-for="Input.PhoneNumber"
+                                       class="form-control"
+                                       placeholder="Phone number" />
+                            </div>
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Security Question *</label>
+                        <select asp-for="Input.SecurityQuestion" class="form-select">
+                            <option value="">-- Select a question --</option>
+                            <option value="Pet">What is your first pet's name?</option>
+                            <option value="School">What is your primary school name?</option>
+                            <option value="City">In which city were you born?</option>
+                            <option value="Dream">What was your dream when you were young?</option>
+                            <option value="sports">what is your favorite soccer player?</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Your Answer *</label>
+                        <input asp-for="Input.SecurityAnswer" class="form-control" />
+                    </div>
+
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-auth w-100 mt-4">
+                        REGISTER
+                    </button>
+
+                    <p class="text-center text-muted mt-3">
+                        Already have an account?
+                        <a asp-page="./Login"
+                           asp-route-returnUrl="@Model.ReturnUrl"
+                           class="fw-semibold link-danger">
+                            Login
+                        </a>
+                    </p>
+                </form>
+
+                <!-- External login -->
+                @if ((Model.ExternalLogins?.Count ?? 0) > 0)
+                {
+                    <div class="divider">OR</div>
+
+                    <form asp-page="./ExternalLogin"
+                          asp-route-returnUrl="@Model.ReturnUrl"
+                          method="post"
+                          class="d-flex gap-2 justify-content-center">
+                        @foreach (var provider in Model.ExternalLogins!)
+                        {
+                            <button type="submit"
+                                    class="btn btn-outline-dark"
+                                    name="provider"
+                                    value="@provider.Name">
+                                @provider.DisplayName
+                            </button>
+                        }
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    body {
+        background: radial-gradient(circle at top, #1a1a1a, #000);
+        min-height: 100vh;
+    }
+
+    .auth-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .auth-card {
+        width: 1000px;
+        max-width: 95%;
+        display: flex;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    /* LEFT */
+    .auth-left {
+        width: 45%;
+        background: url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c") center/cover no-repeat;
+        position: relative;
+    }
+
+        .auth-left .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+        }
+
+    .brand-content {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        padding: 40px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+        .brand-content h1 {
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+    /* RIGHT */
+    .auth-right {
+        width: 55%;
+        padding: 50px 40px;
+    }
+
+    .form-container {
+        max-width: 420px;
+        margin: auto;
+    }
+
+    .input-group-text {
+        background: #000;
+        color: #fff;
+        border: none;
+    }
+
+    .form-control {
+        border-left: none;
+    }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #000;
+        }
+
+    .btn-auth {
+        background: linear-gradient(135deg, #000, #c00000);
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 12px;
+        border: none;
+        transition: 0.3s;
+    }
+
+        .btn-auth:hover {
+            background: linear-gradient(135deg, #c00000, #000);
+            transform: translateY(-2px);
+        }
+
+    .divider {
+        text-align: center;
+        margin: 25px 0;
+        font-size: 13px;
+        color: #aaa;
+        position: relative;
+    }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+    /* Razor-safe media */
+    @@media (max-width: 768px) {
+        .auth-card {
+            flex-direction: column;
+        }
+
+        .auth-right {
+            width: 100%;
+        }
+    }
+</style>

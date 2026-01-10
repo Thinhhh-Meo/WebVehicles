@@ -1,0 +1,86 @@
+﻿@model List<MotorcycleShop.Models.Order>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="container mt-5">
+    <h2 class="text-white mb-4">
+        <i class="fas fa-box"></i> My Orders
+    </h2>
+
+    @if (!Model.Any())
+    {
+        <div class="dark-card text-center">
+            <i class="fas fa-box-open fa-2x mb-3"></i>
+            <p>You have no orders yet</p>
+            <a href="@Url.Action("Index", "Products")" class="btn btn-danger">
+                Go Shopping
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="dark-card">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in Model)
+                    {
+                        <tr>
+                            <td>#@o.OrderId</td>
+                            <td>@o.OrderDate.ToString("dd/MM/yyyy")</td>
+                            <td>@o.FinalPrice.ToString("N0") đ</td>
+                            <td>
+                                <span class="badge @GetStatusBadgeClass(o.Status)">
+                                    @o.Status
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <a href="@Url.Action("Details", new { id = o.OrderId })"
+                                   class="btn btn-sm btn-outline-light me-1">
+                                    View
+                                </a>
+
+                                @if (o.Status == OrderStatus.Pending || o.Status == OrderStatus.Confirmed)
+                                {
+                                    <form asp-action="Cancel"
+                                          asp-controller="Order"
+                                          method="post"
+                                          class="d-inline"
+                                          onsubmit="return confirm('Are you sure you want to cancel this order?');">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@o.OrderId" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            Cancel
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@functions {
+    string GetStatusBadgeClass(OrderStatus s) => s switch
+    {
+        OrderStatus.Pending => "bg-warning",
+        OrderStatus.Confirmed => "bg-info",
+        OrderStatus.Shipping => "bg-primary",
+        OrderStatus.Delivered => "bg-success",
+        OrderStatus.Cancelled => "bg-danger",
+        _ => "bg-secondary"
+    };
+}

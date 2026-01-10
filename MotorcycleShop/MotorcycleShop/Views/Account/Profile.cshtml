@@ -1,0 +1,117 @@
+﻿@model MotorcycleShop.Models.ApplicationUser
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container mt-5">
+    <h2 class="text-white mb-4">
+        <i class="fas fa-user-circle text-danger"></i> My Profile
+    </h2>
+
+    <div class="row g-4">
+        <!-- LEFT -->
+        <div class="col-lg-4">
+            <div class="dark-card text-center">
+                @if (!string.IsNullOrEmpty(Model.AvatarUrl))
+                {
+                    <img src="@Model.AvatarUrl"
+                         class="rounded-circle mb-3 shadow"
+                         style="width:160px;height:160px;object-fit:cover">
+                }
+                else
+                {
+                    <div class="avatar-placeholder mb-3">
+                        <i class="fas fa-user"></i>
+                    </div>
+                }
+
+                <h4>@Model.FullName</h4>
+                <p class="text-muted">@Model.Email</p>
+
+                <div class="d-grid gap-2 mt-3">
+                    <a asp-action="EditProfile" class="btn btn-danger">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </a>
+                    <a asp-action="ChangePassword" class="btn btn-outline-light">
+                        <i class="fas fa-key"></i> Change Password
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-lg-8">
+            <div class="dark-card mb-4">
+                <h5 class="mb-3">Personal Information</h5>
+
+                <table class="table table-dark table-borderless mb-0">
+                    <tr>
+                        <th>Full Name</th>
+                        <td>@Model.FullName</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>@(Model.PhoneNumber ?? "Not provided")</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>@(Model.Age?.ToString() ?? "Not provided")</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>@(Model.Address ?? "Not provided")</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="dark-card">
+                <h5 class="mb-3">Quick Actions</h5>
+                <div class="row text-center g-3">
+                    <div class="col-md-4">
+                        <a asp-controller="Order" asp-action="MyOrders"
+                           class="btn btn-outline-light w-100">
+                            <i class="fas fa-box"></i><br />Orders
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a asp-controller="Feedback" asp-action="MyFeedbacks"
+                           class="btn btn-outline-success w-100">
+                            <i class="fas fa-comment"></i><br />Feedbacks
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a asp-controller="Discount" asp-action="Available"
+                           class="btn btn-outline-warning w-100">
+                            <i class="fas fa-tag"></i><br />Discounts
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dark-card {
+        background: #151515;
+        border-radius: 18px;
+        padding: 24px;
+        color: #fff;
+        box-shadow: 0 0 0 1px rgba(255,255,255,.06);
+    }
+
+    .avatar-placeholder {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: #2a2a2a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 64px;
+    }
+</style>
