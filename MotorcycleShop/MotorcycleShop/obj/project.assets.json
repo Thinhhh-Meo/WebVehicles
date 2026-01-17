@@ -8112,23 +8112,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\acer\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\MotorcycleShop.csproj",
+      "projectUniqueName": "D:\\GitHub\\WebVehicles\\MotorcycleShop\\MotorcycleShop\\MotorcycleShop.csproj",
       "projectName": "MotorcycleShop",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\MotorcycleShop.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\MotorcycleShop\\MotorcycleShop\\obj\\",
+      "projectPath": "D:\\GitHub\\WebVehicles\\MotorcycleShop\\MotorcycleShop\\MotorcycleShop.csproj",
+      "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\WebVehicles\\MotorcycleShop\\MotorcycleShop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
