@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MotorcycleShop.Models.ViewModels
@@ -26,11 +27,16 @@ namespace MotorcycleShop.Models.ViewModels
         public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.COD;
 
         [StringLength(50, ErrorMessage = "Discount code cannot exceed 50 characters")]
+
+        [BindProperty]
         public string? DiscountCode { get; set; }
 
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
         public decimal TotalPrice { get; set; }
+
+        [BindProperty]
         public decimal DiscountAmount { get; set; }
+        [BindProperty]
         public decimal FinalPrice { get; set; }
     }
 }

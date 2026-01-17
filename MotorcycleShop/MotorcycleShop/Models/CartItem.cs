@@ -11,6 +11,7 @@ namespace MotorcycleShop.Models
         public int CartId { get; set; }
 
         [Required]
+
         public int ProductId { get; set; }
 
         [Required]

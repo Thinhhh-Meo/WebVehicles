@@ -371,6 +371,8 @@
 
                         if (response.success) {
                             // Update variables
+                            $('#discountCodeInput').val(response.code);  // ← Cập nhật input
+                            $('#discountCodeHidden').val(response.code); // ← Cập nhật hidden
                             currentDiscount = parseFloat(response.discountAmount) || 0;
                             discountCode = response.code || '';
                             isApplied = true;
@@ -390,7 +392,7 @@
                             $('#subtotalPrice').text(formatNumber(originalTotal));
 
                             // Update hidden fields
-                            $('#discountCodeHidden').val(discountCode);
+                            // $('#discountCodeHidden').val(discountCode);
                             $('#discountAmountHidden').val(currentDiscount);
                             $('#finalPriceHidden').val(response.finalPrice);
                             $('#totalPriceHidden').val(originalTotal);
@@ -430,17 +432,20 @@
             });
 
             // Form submission
-            $('#checkoutForm').submit(function() {
+            $('#checkoutForm').submit(function(e) {
                 console.log('Submitting form...');
 
-                // Đảm bảo discount code được submit
-                var currentCode = $('#discountCodeInput').val().trim();
-                $('#discountCodeHidden').val(currentCode);
+                   // LUÔN dùng giá trị từ hidden field (đã được validate)
+            var discountCodeToSubmit = $('#discountCodeHidden').val();
+            console.log('Discount code to submit:', discountCodeToSubmit);
+
+        // Đảm bảo input cũng có cùng giá trị
+        $('#discountCodeInput').val(discountCodeToSubmit);
 
                 // Log các giá trị trước khi submit
                 console.log('Form submit values:', {
-                    discountCode: currentCode,
-                    discountAmount: currentDiscount,
+                    discountCode:  discountCodeToSubmit,
+                     DiscountAmount: $('#discountAmountHidden').val(),
                     finalPrice: $('#finalPriceHidden').val(),
                     totalPrice: $('#totalPriceHidden').val()
                 });

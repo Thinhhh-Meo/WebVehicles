@@ -1,0 +1,354 @@
+﻿@model MotorcycleShop.Models.Discount
+@using MotorcycleShop.Models
+@{
+    ViewData["Title"] = "Discount Details";
+    ViewData["Controller"] = "Discount";
+    ViewData["Action"] = "Details";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="h3 mb-0"><i class="fas fa-tag me-2"></i>@ViewData["Title"]</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-action="Index">Discounts</a></li>
+                    <li class="breadcrumb-item active">@Model.DiscountName</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Edit" asp-route-id="@Model.DiscountId" class="btn btn-primary me-2">
+                <i class="fas fa-edit me-2"></i>Edit
+            </a>
+            <a asp-action="UsageReport" asp-route-id="@Model.DiscountId" class="btn btn-info me-2">
+                <i class="fas fa-chart-bar me-2"></i>Usage Report
+            </a>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Discount Information -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Discount Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Discount Name</label>
+                            <div class="fw-bold">@Model.DiscountName</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Discount Code</label>
+                            <div class="fw-bold">
+                                <span class="badge bg-primary fs-6">@Model.Code</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Description</label>
+                            <div>@Model.Description</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Discount Type</label>
+                            <div>
+                                <span class="badge bg-info">@Model.DiscountType</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Discount Value</label>
+                            <div class="fw-bold">
+                                @if (Model.DiscountType == DiscountType.Percentage)
+                                {
+                                    <span>@Model.DiscountValue%</span>
+                                }
+                                else
+                                {
+                                    <span>@Model.DiscountValue.ToString("N0")đ</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Minimum Order Amount</label>
+                            <div>
+                                @(Model.MinOrderAmount.HasValue? Model.MinOrderAmount.Value.ToString("N0") + "đ" : "No minimum")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Usage Limit</label>
+                            <div>
+                                @(Model.UsageLimit.HasValue? Model.UsageLimit.Value.ToString("N0") + " uses" : "Unlimited")
+                                @if (Model.UsageLimit.HasValue)
+                                {
+                                    <small class="text-muted d-block">(Used: @Model.UsedCount)</small>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Status</label>
+                            <div>
+                                @{
+                                    var statusBadge = Model.IsActive ? "bg-success" : "bg-danger";
+                                    var statusText = Model.IsActive ? "Active" : "Inactive";
+                                }
+                                <span class="badge @statusBadge">@statusText</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">Start Date</label>
+                            <div>@Model.DateStart.ToString("MMM dd, yyyy HH:mm")</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted">End Date</label>
+                            <div>@Model.DateEnd.ToString("MMM dd, yyyy HH:mm")</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="form-label text-muted">Validity Progress</label>
+                            <div class="progress" style="height: 8px;">
+                                @{
+                                    var totalDays = (Model.DateEnd - Model.DateStart).TotalDays;
+                                    var elapsedDays = (DateTime.Now - Model.DateStart).TotalDays;
+                                    var progressPercentage = Math.Min(Math.Max(elapsedDays / totalDays * 100, 0), 100);
+                                    var progressClass = DateTime.Now < Model.DateStart ? "bg-warning" :
+                                    DateTime.Now > Model.DateEnd ? "bg-secondary" : "bg-success";
+                                }
+                                <div class="progress-bar @progressClass"
+                                     role="progressbar"
+                                     style="width: @progressPercentage%"
+                                     aria-valuenow="@progressPercentage"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                @if (DateTime.Now < Model.DateStart)
+                                {
+                                    <span>Starts in @((Model.DateStart - DateTime.Now).Days) days</span>
+                                }
+                                else if (DateTime.Now > Model.DateEnd)
+                                {
+                                    <span>Expired @((DateTime.Now - Model.DateEnd).Days) days ago</span>
+                                }
+                                else
+                                {
+                                    <span>Ends in @((Model.DateEnd - DateTime.Now).Days) days</span>
+                                }
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Associated Promotions -->
+            @if (Model.Promotions != null && Model.Promotions.Any())
+            {
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-bullhorn me-2"></i>Associated Promotions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Condition</th>
+                                        <th>Status</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var promotion in Model.Promotions)
+                                    {
+                                        <tr>
+                                            <td>@promotion.Condition</td>
+                                            <td>
+                                                @{
+                                                    var promoStatus = promotion.IsActive ? "Active" : "Inactive";
+                                                    var promoStatusClass = promotion.IsActive ? "bg-success" : "bg-danger";
+                                                }
+                                                <span class="badge @promoStatusClass">@promoStatus</span>
+                                            </td>
+                                            <td>@promotion.StartDate.ToString("MMM dd, yyyy")</td>
+                                            <td>@promotion.EndDate.ToString("MMM dd, yyyy")</td>
+                                            <td>
+                                                <a asp-controller="Promotion" asp-action="Edit"
+                                                   asp-route-id="@promotion.PromotionId"
+                                                   class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Sidebar Statistics -->
+        <div class="col-md-4">
+            <!-- Quick Stats -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Quick Statistics</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6 border-end">
+                            <div class="display-6">@Model.UsedCount</div>
+                            <small class="text-muted">Total Uses</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="display-6">@(Model.Orders?.Count ?? 0)</div>
+                            <small class="text-muted">Orders</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row text-center mt-3">
+                        <div class="col-6 border-end">
+                            <div class="display-6">
+                                @if (Model.UsageLimit.HasValue && Model.UsageLimit.Value > 0)
+                                {
+                                    <span>@((Model.UsedCount * 100 / Model.UsageLimit.Value).ToString("0"))%</span>
+                                }
+                                else
+                                {
+                                    <span>∞</span>
+                                }
+                            </div>
+                            <small class="text-muted">Usage Rate</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="display-6">@(Model.Promotions?.Count ?? 0)</div>
+                            <small class="text-muted">Promotions</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-outline-primary" id="toggleStatusBtn">
+                            <i class="fas fa-toggle-on me-2"></i>
+                            @(Model.IsActive ? "Deactivate" : "Activate") Discount
+                        </button>
+                        <a asp-action="GenerateCoupons" asp-route-id="@Model.DiscountId"
+                           class="btn btn-outline-success" id="generateCouponsBtn">
+                            <i class="fas fa-plus-circle me-2"></i>Generate Coupons
+                        </a>
+                        <form asp-action="Delete" asp-route-id="@Model.DiscountId" method="post"
+                              onsubmit="return confirm('Are you sure you want to delete this discount?');"
+                              class="d-grid">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="fas fa-trash me-2"></i>Delete Discount
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Toggle Status
+            $('#toggleStatusBtn').click(function() {
+                Swal.fire({
+                    title: 'Confirm',
+                    text: 'Are you sure you want to ' + ($(this).text().includes('Deactivate') ? 'deactivate' : 'activate') + ' this discount?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'Cancel',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        return $.ajax({
+                            url: '@Url.Action("ToggleStatus", new { id = Model.DiscountId })',
+                            type: 'POST',
+                            headers: {
+                                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    return response;
+                                } else {
+                                    throw new Error('Failed to update status');
+                                }
+                            }
+                        });
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Discount status updated successfully.',
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+                            location.reload();
+                        });
+                    }
+                });
+            });
+
+            // Generate Coupons - Open modal for quantity input
+            $('#generateCouponsBtn').click(function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Generate Coupons',
+                    text: 'Enter number of coupons to generate',
+                    input: 'number',
+                    inputLabel: 'Quantity',
+                    inputPlaceholder: 'Enter number',
+                    inputValue: 10,
+                    showCancelButton: true,
+                    confirmButtonText: 'Generate',
+                    cancelButtonText: 'Cancel',
+                    inputValidator: (value) => {
+                        if (!value || value < 1 || value > 100) {
+                            return 'Please enter a number between 1 and 100';
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '@Url.Action("GenerateCoupons", new { id = Model.DiscountId })' + '?quantity=' + result.value;
+                    }
+                });
+            });
+        });
+    </script>
+}

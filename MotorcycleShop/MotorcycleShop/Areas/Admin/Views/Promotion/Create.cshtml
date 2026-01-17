@@ -1,0 +1,389 @@
+﻿@model MotorcycleShop.Areas.Admin.ViewModels.PromotionCreateViewModel
+@{
+    ViewData["Title"] = "Create Promotion";
+    ViewData["Controller"] = "Promotion";
+    ViewData["Action"] = "Create";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h1 class="h3 mb-0"><i class="fas fa-bullhorn me-2"></i>@ViewData["Title"]</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Promotion Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-edit me-2"></i>Promotion Details</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" id="createPromotionForm">
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <!-- Condition -->
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="Condition" class="form-label">Promotion Condition *</label>
+                                <input asp-for="Condition" class="form-control" placeholder="e.g., 'Buy 2 Get 1 Free', 'Free Shipping Over 2M'" />
+                                <span asp-validation-for="Condition" class="text-danger"></span>
+                                <small class="form-text text-muted">Short description of the promotion condition</small>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="Description" class="form-label">Detailed Description *</label>
+                                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Detailed description of the promotion..."></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                                <small class="form-text text-muted">Full description that will be shown to customers</small>
+                            </div>
+
+                            <!-- Discount Link -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DiscountId" class="form-label">Discount (Optional)</label>
+                                <select asp-for="DiscountId" class="form-select" asp-items="ViewBag.Discounts">
+                                    <option value="">-- No Discount --</option>
+                                </select>
+                                <span asp-validation-for="DiscountId" class="text-danger"></span>
+                                <small class="form-text text-muted">Link this promotion to an existing discount</small>
+                            </div>
+
+                            <!-- Display Order -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DisplayOrder" class="form-label">Display Order</label>
+                                <input asp-for="DisplayOrder" class="form-control" type="number" min="0" max="100" value="0" />
+                                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                                <small class="form-text text-muted">Lower numbers appear first (0 = highest priority)</small>
+                            </div>
+
+                            <!-- Dates -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="StartDate" class="form-label">Start Date *</label>
+                                <input asp-for="StartDate" class="form-control" type="date" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="EndDate" class="form-label">End Date *</label>
+                                <input asp-for="EndDate" class="form-control" type="date" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="ImageFile" class="form-label">Promotion Image</label>
+                                <div class="image-upload-container">
+                                    <div class="image-preview mb-3" id="imagePreview">
+                                        <div class="image-placeholder">
+                                            <i class="fas fa-image fa-3x text-muted"></i>
+                                            <p class="mt-2">No image selected</p>
+                                        </div>
+                                    </div>
+                                    <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" id="imageUpload" />
+                                    <small class="form-text text-muted">Recommended size: 1200x400px. JPG, PNG or GIF.</small>
+                                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="col-md-12 mb-4">
+                                <div class="form-check form-switch">
+                                    <input asp-for="IsActive" class="form-check-input" type="checkbox" role="switch" id="isActiveSwitch" checked>
+                                    <label class="form-check-label" for="isActiveSwitch">
+                                        <strong>Active Promotion</strong>
+                                    </label>
+                                </div>
+                                <small class="form-text text-muted">Promotion will be visible to customers when active</small>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to List
+                            </a>
+                            <div>
+                                <button type="button" class="btn btn-outline-warning me-2" id="previewBtn">
+                                    <i class="fas fa-eye me-2"></i>Preview
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save me-2"></i>Create Promotion
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!-- Help & Guidelines -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Guidelines</h5>
+                </div>
+                <div class="card-body">
+                    <h6><i class="fas fa-lightbulb text-warning me-2"></i>Best Practices</h6>
+                    <ul class="mb-3">
+                        <li>Keep conditions clear and concise</li>
+                        <li>Set realistic start/end dates</li>
+                        <li>Use high-quality images for better conversion</li>
+                        <li>Test promotions before going live</li>
+                    </ul>
+
+                    <h6><i class="fas fa-exclamation-triangle text-danger me-2"></i>Important Notes</h6>
+                    <ul>
+                        <li>Promotions with discounts require existing discount codes</li>
+                        <li>Expired promotions are automatically hidden</li>
+                        <li>Only active promotions are visible to customers</li>
+                        <li>Display order determines visibility priority</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Promotion Preview -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-desktop me-2"></i>Live Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="promotion-preview">
+                        <div class="preview-image mb-3">
+                            <img src="" id="previewImage" class="img-fluid rounded" style="display: none;">
+                            <div class="image-placeholder bg-light rounded text-center py-4" id="previewPlaceholder">
+                                <i class="fas fa-image fa-2x text-muted"></i>
+                                <p class="mt-2 mb-0 small">Promotion image will appear here</p>
+                            </div>
+                        </div>
+
+                        <h5 id="previewCondition" class="preview-title">Promotion Condition</h5>
+                        <p id="previewDescription" class="text-muted">Detailed description of the promotion will appear here...</p>
+
+                        <div class="preview-details">
+                            <div class="row">
+                                <div class="col-6">
+                                    <small class="text-muted">Start Date:</small>
+                                    <div id="previewStartDate" class="fw-bold">--/--/----</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">End Date:</small>
+                                    <div id="previewEndDate" class="fw-bold">--/--/----</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-badge mt-3">
+                            <span class="badge bg-success" id="previewStatus">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .image-upload-container {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
+
+            .image-upload-container:hover {
+                border-color: var(--primary-color);
+                background: #f0f2f5;
+            }
+
+        .image-preview {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            color: #6c757d;
+        }
+
+        #imagePreview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .promotion-preview {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .preview-title {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .preview-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .form-switch {
+            padding-left: 3.5em;
+        }
+
+            .form-switch .form-check-input {
+                width: 3em;
+                height: 1.5em;
+                margin-left: -3.5em;
+            }
+    </style>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function() {
+            // Image preview
+            $('#imageUpload').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        // Update form preview
+                        $('#imagePreview').html(`<img src="${e.target.result}" alt="Preview" class="img-fluid rounded">`);
+
+                        // Update live preview
+                        $('#previewImage').attr('src', e.target.result).show();
+                        $('#previewPlaceholder').hide();
+                    }
+
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Live preview updates
+            $('#Condition').on('input', function() {
+                $('#previewCondition').text($(this).val() || 'Promotion Condition');
+            });
+
+            $('#Description').on('input', function() {
+                $('#previewDescription').text($(this).val() || 'Detailed description of the promotion will appear here...');
+            });
+
+            $('#StartDate').on('change', function() {
+                const date = new Date($(this).val());
+                $('#previewStartDate').text(date.toLocaleDateString());
+            });
+
+            $('#EndDate').on('change', function() {
+                const date = new Date($(this).val());
+                $('#previewEndDate').text(date.toLocaleDateString());
+            });
+
+            $('#isActiveSwitch').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#previewStatus').removeClass('bg-danger').addClass('bg-success').text('Active');
+                } else {
+                    $('#previewStatus').removeClass('bg-success').addClass('bg-danger').text('Inactive');
+                }
+            });
+
+            // Preview button
+            $('#previewBtn').click(function() {
+                updatePreview();
+                Swal.fire({
+                    title: 'Promotion Preview',
+                    html: document.querySelector('.promotion-preview').innerHTML,
+                    width: 600,
+                    showCloseButton: true,
+                    showConfirmButton: false
+                });
+            });
+
+            // Form submission
+            $('#createPromotionForm').submit(function(e) {
+                // Validate dates
+                const startDate = new Date($('#StartDate').val());
+                const endDate = new Date($('#EndDate').val());
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                if (startDate > endDate) {
+                    e.preventDefault();
+                    Swal.fire('Error', 'End date must be after start date', 'error');
+                    return false;
+                }
+
+                if (endDate < today) {
+                    e.preventDefault();
+                    Swal.fire('Error', 'End date cannot be in the past', 'error');
+                    return false;
+                }
+
+                // Show loading
+                $('#submitBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Creating...');
+            });
+
+            // Initialize date pickers with tomorrow as default start
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            $('#StartDate').val(tomorrow.toISOString().split('T')[0]);
+
+            // Set end date to 1 month from now
+            const nextMonth = new Date();
+            nextMonth.setMonth(nextMonth.getMonth() + 1);
+            $('#EndDate').val(nextMonth.toISOString().split('T')[0]);
+
+            // Update preview with default dates
+            $('#previewStartDate').text(tomorrow.toLocaleDateString());
+            $('#previewEndDate').text(nextMonth.toLocaleDateString());
+        });
+
+        function updatePreview() {
+            // Update all preview elements
+            $('#Condition').trigger('input');
+            $('#Description').trigger('input');
+            $('#StartDate').trigger('change');
+            $('#EndDate').trigger('change');
+            $('#isActiveSwitch').trigger('change');
+        }
+
+        // Set minimum date for end date based on start date
+        $('#StartDate').change(function() {
+            const startDate = new Date($(this).val());
+            const minEndDate = new Date(startDate);
+            minEndDate.setDate(minEndDate.getDate() + 1);
+
+            $('#EndDate').attr('min', minEndDate.toISOString().split('T')[0]);
+
+            // If current end date is before new start date, update it
+            const currentEndDate = new Date($('#EndDate').val());
+            if (currentEndDate < startDate) {
+                const newEndDate = new Date(startDate);
+                newEndDate.setDate(newEndDate.getDate() + 7); // Default 1 week duration
+                $('#EndDate').val(newEndDate.toISOString().split('T')[0]);
+            }
+        });
+    </script>
+}

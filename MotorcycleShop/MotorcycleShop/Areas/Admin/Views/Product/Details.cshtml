@@ -1,0 +1,201 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Product Details";
+    ViewData["Controller"] = "Product";
+    ViewData["Action"] = "Details";
+}
+
+<div class="row">
+    <div class="col-lg-5">
+        <!-- Product Image -->
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <img src="@Model.ImageUrl" alt="@Model.Name"
+                     class="img-fluid rounded" style="max-height: 400px; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.ProductId"
+                       class="btn btn-primary">
+                        <i class="fas fa-edit me-2"></i>Edit Product
+                    </a>
+                    <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@Model.ProductId"
+                       class="btn btn-outline-primary" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i>View on Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <!-- Product Info -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Product Information</h5>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">@Model.Name</h3>
+                <div class="d-flex align-items-center mb-3">
+                    <span class="badge bg-@(Model.TypeProduct == ProductType.Motorcycle ? "primary" : "info") me-2">
+                        @Model.TypeProduct
+                    </span>
+                    <span class="badge bg-@(Model.IsActive ? "success" : "danger")">
+                        @(Model.IsActive ? "Active" : "Inactive")
+                    </span>
+                </div>
+
+                <p class="card-text">@Model.Description</p>
+
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="text-muted small">Price</div>
+                        <div class="h4 text-primary">@string.Format("{0:N0}", Model.Price) đ</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-muted small">Stock Quantity</div>
+                        <div class="h4 @(Model.Quantity <= 5 ? "text-danger" : "text-success")">@Model.Quantity</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-muted small">Brand</div>
+                        <div class="h5">@Model.BrandName</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-muted small">Created Date</div>
+                        <div>@Model.CreatedDate.ToString("yyyy-MM-dd HH:mm")</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-muted small">Product ID</div>
+                        <div>#@Model.ProductId</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specific Details -->
+        @if (Model.Motorcycle != null)
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-motorcycle me-2"></i>Motorcycle Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <strong>Vehicle Name:</strong> @Model.Motorcycle.VehicleName
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Type:</strong> @Model.Motorcycle.TypeVehicle
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Displacement:</strong> @Model.Motorcycle.Displacement cc
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Fuel Capacity:</strong> @Model.Motorcycle.FuelCapacity liters
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Weight:</strong> @Model.Motorcycle.Weight kg
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Color:</strong> @Model.Motorcycle.Color
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (Model.SparePart != null)
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-cog me-2"></i>Spare Part Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <strong>Spare Name:</strong> @Model.SparePart.SpareName
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Category:</strong> @Model.SparePart.Category
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <strong>Compatible With:</strong> @Model.SparePart.CompatibleWith
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Statistics -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Product Statistics</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card stat-users py-3 rounded">
+                            <div class="h2 mb-1">@(Model.OrderDetails?.Count ?? 0)</div>
+                            <div class="text-white small">Total Orders</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card stat-products py-3 rounded">
+                            <div class="h2 mb-1">@(Model.Feedbacks?.Count ?? 0)</div>
+                            <div class="text-white small">Feedbacks</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card stat-orders py-3 rounded">
+                            @{
+                                var avgRating = Model.Feedbacks?.Any() == true ?
+                                Model.Feedbacks.Average(f => f.Rating).ToString("0.0") : "0.0";
+                            }
+                            <div class="h2 mb-1">@avgRating</div>
+                            <div class="text-white small">Avg Rating</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card stat-revenue py-3 rounded">
+                            @{
+                                var totalSold = Model.OrderDetails?.Sum(od => od.Quantity) ?? 0;
+                                var totalRevenue = totalSold * Model.Price;
+                            }
+                            <div class="h2 mb-1">@string.Format("{0:N0}", totalRevenue)</div>
+                            <div class="text-white small">Revenue (đ)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .stat-card.stat-users {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+        }
+
+        .stat-card.stat-products {
+            background: linear-gradient(45deg, #4cc9f0, #4895ef);
+        }
+
+        .stat-card.stat-orders {
+            background: linear-gradient(45deg, #f72585, #b5179e);
+        }
+
+        .stat-card.stat-revenue {
+            background: linear-gradient(45deg, #f8961e, #f3722c);
+        }
+    </style>
+}

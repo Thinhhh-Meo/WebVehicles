@@ -1,0 +1,313 @@
+﻿@model MotorcycleShop.Areas.Admin.ViewModels.CreateProductViewModel
+@using MotorcycleShop.Models
+
+@{
+    ViewData["Title"] = "Add New Product";
+    ViewData["Controller"] = "Product";
+    ViewData["Action"] = "Create";
+}
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Add New Product</h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="Admin" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data" id="createForm">
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+                    <div class="row">
+                        <!-- Product Name -->
+                        <div class="col-md-8 mb-3">
+                            <label asp-for="Name" class="form-label">Product Name *</label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter product name" required>
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Product Type -->
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="TypeProduct" class="form-label">Product Type *</label>
+                            <select asp-for="TypeProduct" class="form-select" id="productType" required>
+                                <option value="">Select Type</option>
+                                <option value="1">Motorcycle</option>
+                                <option value="2">Spare Part</option>
+                            </select>
+                            <span asp-validation-for="TypeProduct" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="3"
+                                  placeholder="Enter product description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <div class="row">
+                        <!-- Price -->
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Price" class="form-label">Price (VND) *</label>
+                            <input asp-for="Price" type="number" class="form-control" min="0" step="1000" placeholder="0" required>
+                            <span asp-validation-for="Price" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Quantity" class="form-label">Stock Quantity *</label>
+                            <input asp-for="Quantity" type="number" class="form-control" min="0" placeholder="0" required>
+                            <span asp-validation-for="Quantity" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Brand -->
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="BrandId" class="form-label">Brand *</label>
+                            <select asp-for="BrandId" class="form-select" asp-items="Model.Brands">
+                                <option value="">Select Brand</option>
+                            </select>
+                            <span asp-validation-for="BrandId" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="mb-3">
+                        <label asp-for="ImageFile" class="form-label">Product Image</label>
+
+                        <input asp-for="ImageFile"
+                               type="file"
+                               class="form-control"
+                               accept="image/*" />
+
+                        <span asp-validation-for="ImageFile" class="text-danger small"></span>
+
+                        <div class="form-text">
+                            Recommended size: 800x600px, JPG or PNG format
+                        </div>
+                    </div>
+
+
+                    <!-- Image Preview -->
+                    <div class="mb-4">
+                        <label class="form-label">Image Preview</label>
+                        <div id="imagePreview" class="border rounded p-4 text-center bg-light min-h-200 d-flex align-items-center justify-content-center">
+                            <div class="text-muted">
+                                <i class="fas fa-image fa-3x mb-3"></i>
+                                <p>Image preview will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Motorcycle Specific Fields -->
+                    <div id="motorcycleFields" style="display: none;">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-motorcycle me-2"></i>Motorcycle Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Vehicle Type *</label>
+                                        <select asp-for="Motorcycle.TypeVehicle" class="form-select">
+                                            <option value="">Select Type</option>
+                                            <option value="Sport">Sport</option>
+                                            <option value="Cruiser">Cruiser</option>
+                                            <option value="Scooter">Scooter</option>
+                                            <option value="Adventure">Adventure</option>
+                                            <option value="Naked">Naked</option>
+                                        </select>
+                                        <span asp-validation-for="Motorcycle.TypeVehicle" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="Motorcycle.Displacement" class="form-label"></label>
+                                        <input asp-for="Motorcycle.Displacement" class="form-control" />
+                                        <span asp-validation-for="Motorcycle.Displacement" class="text-danger small"></span>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="Motorcycle.FuelCapacity" class="form-label"></label>
+                                        <input asp-for="Motorcycle.FuelCapacity" class="form-control" />
+                                        <span asp-validation-for="Motorcycle.FuelCapacity" class="text-danger small"></span>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="Motorcycle.Weight" class="form-label"></label>
+                                        <input asp-for="Motorcycle.Weight" class="form-control" />
+                                        <span asp-validation-for="Motorcycle.Weight" class="text-danger small"></span>
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        <label asp-for="Motorcycle.Color" class="form-label"></label>
+                                        <input asp-for="Motorcycle.Color" class="form-control" />
+                                        <span asp-validation-for="Motorcycle.Color" class="text-danger small"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spare Part Specific Fields -->
+                    <div id="sparePartFields" style="display: none;">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-cog me-2"></i>Spare Part Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="SparePart.Category" class="form-label"></label>
+                                        <input asp-for="SparePart.Category" class="form-control" />
+                                        <span asp-validation-for="SparePart.Category" class="text-danger small"></span>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="SparePart.CompatibleWith" class="form-label"></label>
+                                        <input asp-for="SparePart.CompatibleWith" class="form-control" />
+                                        <span asp-validation-for="SparePart.CompatibleWith" class="text-danger small"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-4">
+                        <div class="form-check form-switch">
+                            <input asp-for="IsActive" class="form-check-input" type="checkbox" role="switch" checked>
+                            <label asp-for="IsActive" class="form-check-label">Active Product</label>
+                        </div>
+                        <div class="form-text">Inactive products won't appear in the store</div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to List
+                        </a>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <i class="fas fa-save me-2"></i>Create Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Show/hide specific fields based on product type
+        const MOTORCYCLE = 1;
+        const SPAREPART = 2;
+
+        document.getElementById('productType').addEventListener('change', function () {
+            const type = parseInt(this.value);
+
+            document.getElementById('motorcycleFields').style.display =
+                type === MOTORCYCLE ? 'block' : 'none';
+
+            document.getElementById('sparePartFields').style.display =
+                type === SPAREPART ? 'block' : 'none';
+        });
+
+        // Client-side validation
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            const productType = document.getElementById('productType').value;
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.field-error').forEach(el => el.remove());
+
+            if (productType === MOTORCYCLE.toString()) {
+                const typeVehicle = document.querySelector('[name="Motorcycle.typeVehicle"]');
+                const displacement = document.querySelector('[name="Motorcycle.displacement"]');
+
+                if (!typeVehicle.value) {
+                    showError(typeVehicle, 'Vehicle type is required');
+                    isValid = false;
+                }
+
+                if (!displacement.value || displacement.value <= 0) {
+                    showError(displacement, 'Displacement must be greater than 0');
+                    isValid = false;
+                }
+            }
+            else if (productType === SPAREPART.toString()) {
+                const category = document.querySelector('[name="SparePart.Category"]');
+
+                if (!category.value.trim()) {
+                    showError(category, 'Category is required');
+                    isValid = false;
+                }
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('Please fill all required fields');
+            }
+        });
+
+        function showError(inputElement, message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'text-danger small mt-1 field-error';
+            errorDiv.textContent = message;
+            inputElement.parentNode.appendChild(errorDiv);
+            inputElement.classList.add('is-invalid');
+        }
+
+        // Image preview
+        document.querySelector('input[name="imageFile"]').addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            const file = e.target.files[0];
+            const maxSize = 5 * 1024 * 1024; // 5MB
+
+            if (file) {
+                if (file.size > maxSize) {
+                    document.getElementById('imageFileError').textContent = 'Image size must be less than 5MB';
+                    this.value = '';
+                    preview.innerHTML = `
+                        <div class="text-muted">
+                            <i class="fas fa-image fa-3x mb-3"></i>
+                            <p>Image preview will appear here</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `
+                        <img src="${e.target.result}" alt="Image preview"
+                             style="max-width: 100%; max-height: 300px; object-fit: contain;">
+                        <div class="mt-2 small text-muted">${file.name}</div>
+                    `;
+                }
+                reader.readAsDataURL(file);
+                document.getElementById('imageFileError').textContent = '';
+            } else {
+                preview.innerHTML = `
+                    <div class="text-muted">
+                        <i class="fas fa-image fa-3x mb-3"></i>
+                        <p>Image preview will appear here</p>
+                    </div>
+                `;
+            }
+        });
+
+        // Auto-focus
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('Name').focus();
+
+            // Trigger change event if product type already selected (when validation fails)
+            const productType = document.getElementById('productType');
+            if (productType.value) {
+                productType.dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
+
+    <!-- jQuery Validation -->
+    <partial name="_ValidationScriptsPartial" />
+}

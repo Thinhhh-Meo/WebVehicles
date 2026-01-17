@@ -1,0 +1,330 @@
+﻿@model MotorcycleShop.Models.Discount
+@using MotorcycleShop.Models
+@{
+    ViewData["Title"] = "Edit Discount";
+    ViewData["Controller"] = "Discount";
+    ViewData["Action"] = "Edit";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h1 class="h3 mb-0"><i class="fas fa-edit me-2"></i>@ViewData["Title"]</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-action="Index">Discounts</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@Model.DiscountId">@Model.DiscountName</a></li>
+                    <li class="breadcrumb-item active">Edit</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Discount Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-tag me-2"></i>Discount Details</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post" id="editDiscountForm">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="DiscountId" />
+
+                        <div class="row">
+                            <!-- Discount Name -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DiscountName" class="form-label">Discount Name *</label>
+                                <input asp-for="DiscountName" class="form-control" />
+                                <span asp-validation-for="DiscountName" class="text-danger"></span>
+                            </div>
+
+                            <!-- Discount Code -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Code" class="form-label">Discount Code *</label>
+                                <div class="input-group">
+                                    <input asp-for="Code" class="form-control" />
+                                    <button type="button" class="btn btn-outline-secondary" id="generateCodeBtn">
+                                        <i class="fas fa-redo"></i>
+                                    </button>
+                                </div>
+                                <span asp-validation-for="Code" class="text-danger"></span>
+                                <small class="form-text text-muted">Unique code customers will use</small>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <!-- Discount Type -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DiscountType" class="form-label">Discount Type *</label>
+                                <select asp-for="DiscountType" class="form-select" id="discountType">
+                                    <option value="Percentage">Percentage</option>
+                                    <option value="FixedAmount">Fixed Amount</option>
+                                </select>
+                                <span asp-validation-for="DiscountType" class="text-danger"></span>
+                            </div>
+
+                            <!-- Discount Value -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DiscountValue" class="form-label">Discount Value *</label>
+                                <div class="input-group">
+                                    <input asp-for="DiscountValue" class="form-control" type="number" step="0.01" />
+                                    <span class="input-group-text" id="discountValueSuffix">%</span>
+                                </div>
+                                <span asp-validation-for="DiscountValue" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Minimum Order Amount -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="MinOrderAmount" class="form-label">Minimum Order Amount (Optional)</label>
+                                <input asp-for="MinOrderAmount" class="form-control" type="number" step="1000" />
+                                <span asp-validation-for="MinOrderAmount" class="text-danger"></span>
+                                <small class="form-text text-muted">Leave empty for no minimum</small>
+                            </div>
+
+                            <!-- Usage Limit -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="UsageLimit" class="form-label">Usage Limit (Optional)</label>
+                                <input asp-for="UsageLimit" class="form-control" type="number" />
+                                <span asp-validation-for="UsageLimit" class="text-danger"></span>
+                                <small class="form-text text-muted">Maximum number of times this discount can be used</small>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Start Date -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DateStart" class="form-label">Start Date *</label>
+                                <input asp-for="DateStart" class="form-control" type="datetime-local"
+                                       value="@Model.DateStart.ToString("yyyy-MM-ddTHH:mm")" />
+                                <span asp-validation-for="DateStart" class="text-danger"></span>
+                            </div>
+
+                            <!-- End Date -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DateEnd" class="form-label">End Date *</label>
+                                <input asp-for="DateEnd" class="form-control" type="datetime-local"
+                                       value="@Model.DateEnd.ToString("yyyy-MM-ddTHH:mm")" />
+                                <span asp-validation-for="DateEnd" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input asp-for="IsActive" class="form-check-input" type="checkbox" role="switch" id="isActiveSwitch">
+                                <label class="form-check-label" for="isActiveSwitch">
+                                    <strong>Active Discount</strong>
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">Discount will be available to customers when active</small>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Details" asp-route-id="@Model.DiscountId" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                            <div>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save me-2"></i>Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!-- Preview -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-eye me-2"></i>Discount Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="preview-card">
+                        <div class="text-center mb-3">
+                            <span class="badge bg-info" id="previewType">@Model.DiscountType</span>
+                            <h4 class="mt-2" id="previewName">@Model.DiscountName</h4>
+                        </div>
+
+                        <div class="preview-details">
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <small class="text-muted">Code:</small>
+                                    <div class="fw-bold" id="previewCode">@Model.Code</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Value:</small>
+                                    <div class="fw-bold" id="previewValue">
+                                        @if (Model.DiscountType == DiscountType.Percentage)
+                                        {
+                                            <span>@Model.DiscountValue%</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Model.DiscountValue.ToString("N0")đ</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <small class="text-muted">Validity:</small>
+                                    <div>
+                                        <small id="previewDates">@Model.DateStart.ToString("MMM dd") - @Model.DateEnd.ToString("MMM dd, yyyy")</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <small class="text-muted">Status:</small>
+                                    <div>
+                                        <span class="badge @(Model.IsActive ? "bg-success" : "bg-danger")" id="previewStatus">
+                                            @(Model.IsActive ? "Active" : "Inactive")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Current Statistics</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6 border-end">
+                            <div class="display-6">@Model.UsedCount</div>
+                            <small class="text-muted">Used Count</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="display-6">
+                                @if (Model.UsageLimit.HasValue && Model.UsageLimit.Value > 0)
+                                {
+                                    <span>@((Model.UsedCount * 100 / Model.UsageLimit.Value).ToString("0"))%</span>
+                                }
+                                else
+                                {
+                                    <span>∞</span>
+                                }
+                            </div>
+                            <small class="text-muted">Usage Rate</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function() {
+            // Update suffix based on discount type
+            function updateDiscountSuffix() {
+                const type = $('#discountType').val();
+                const suffix = type === 'Percentage' ? '%' : 'đ';
+                $('#discountValueSuffix').text(suffix);
+                $('#previewType').text(type);
+            }
+
+            // Generate random code
+            $('#generateCodeBtn').click(function() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                let code = '';
+                for (let i = 0; i < 8; i++) {
+                    code += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                $('#Code').val(code);
+                updatePreview();
+            });
+
+            // Live preview updates
+            function updatePreview() {
+                $('#previewName').text($('#DiscountName').val() || 'Discount Name');
+                $('#previewCode').text($('#Code').val() || 'CODE1234');
+
+                const discountValue = $('#DiscountValue').val();
+                const discountType = $('#discountType').val();
+                $('#previewValue').text(discountValue + (discountType === 'Percentage' ? '%' : 'đ'));
+
+                const startDate = new Date($('#DateStart').val());
+                const endDate = new Date($('#DateEnd').val());
+                if (startDate && endDate) {
+                    $('#previewDates').text(
+                        startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' - ' +
+                        endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    );
+                }
+
+                $('#previewStatus').text($('#isActiveSwitch').is(':checked') ? 'Active' : 'Inactive')
+                    .toggleClass('bg-success', $('#isActiveSwitch').is(':checked'))
+                    .toggleClass('bg-danger', !$('#isActiveSwitch').is(':checked'));
+            }
+
+            // Initialize
+            updateDiscountSuffix();
+            updatePreview();
+
+            // Event listeners
+            $('#discountType').change(updateDiscountSuffix);
+            $('#DiscountName, #Code, #DiscountValue, #DateStart, #DateEnd').on('input change', updatePreview);
+            $('#isActiveSwitch').change(updatePreview);
+
+            // Form submission
+            $('#editDiscountForm').submit(function(e) {
+                // Validate dates
+                const startDate = new Date($('#DateStart').val());
+                const endDate = new Date($('#DateEnd').val());
+
+                if (startDate > endDate) {
+                    e.preventDefault();
+                    Swal.fire('Error', 'End date must be after start date', 'error');
+                    return false;
+                }
+
+                // Validate discount value
+                const discountValue = parseFloat($('#DiscountValue').val());
+                const discountType = $('#discountType').val();
+
+                if (discountType === 'Percentage' && (discountValue < 1 || discountValue > 100)) {
+                    e.preventDefault();
+                    Swal.fire('Error', 'Percentage discount must be between 1% and 100%', 'error');
+                    return false;
+                }
+
+                if (discountType === 'FixedAmount' && discountValue < 1000) {
+                    e.preventDefault();
+                    Swal.fire('Error', 'Fixed amount discount must be at least 1,000đ', 'error');
+                    return false;
+                }
+
+                // Show loading
+                $('#submitBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Saving...');
+            });
+        });
+    </script>
+}

@@ -1,0 +1,223 @@
+﻿@model PaginatedList<Promotion>
+@{
+    ViewData["Title"] = "Promotion Management";
+    ViewData["Controller"] = "Promotion";
+    ViewData["Action"] = "Index";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-0">Promotion Management</h1>
+        <p class="text-muted mb-0">Manage promotional banners and campaigns</p>
+    </div>
+    <div>
+        <a asp-area="Admin" asp-controller="Promotion" asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Create Promotion
+        </a>
+    </div>
+</div>
+
+<!-- Filters -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-8">
+                <select name="status" class="form-select" onchange="this.form.submit()">
+                    <option value="">All Promotions</option>
+                    <option value="active" selected="@(ViewBag.Status == "active")">Active</option>
+                    <option value="upcoming" selected="@(ViewBag.Status == "upcoming")">Upcoming</option>
+                    <option value="expired" selected="@(ViewBag.Status == "expired")">Expired</option>
+                    <option value="inactive" selected="@(ViewBag.Status == "inactive")">Inactive</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <a asp-area="Admin" asp-controller="Promotion" asp-action="Index" class="btn btn-outline-secondary w-100">
+                    <i class="fas fa-undo me-2"></i>Reset Filter
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Promotions Grid -->
+@if (Model.Any())
+{
+    <div class="row" id="promotionsContainer">
+        @foreach (var promotion in Model.OrderBy(p => p.DisplayOrder))
+        {
+            var isActive = promotion.IsActive && promotion.StartDate <= DateTime.Now && promotion.EndDate >= DateTime.Now;
+            var isExpired = promotion.EndDate < DateTime.Now;
+            var isUpcoming = promotion.StartDate > DateTime.Now;
+
+            <div class="col-md-6 col-lg-4 mb-4" data-id="@promotion.PromotionId">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(promotion.ImagePath))
+                    {
+                        <img src="@promotion.ImagePath" class="card-img-top" alt="@promotion.Condition"
+                             style="height: 200px; object-fit: cover;">
+                    }
+                    else
+                    {
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                             style="height: 200px;">
+                            <i class="fas fa-image fa-3x text-muted"></i>
+                        </div>
+                    }
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0">@promotion.Condition</h5>
+                            <span class="badge @GetPromotionBadgeClass(promotion)">
+                                @GetPromotionStatus(promotion)
+                            </span>
+                        </div>
+
+                        <p class="card-text text-muted small">@promotion.Description</p>
+
+                        <div class="small mb-3">
+                            <i class="fas fa-calendar me-1"></i>
+                            @promotion.StartDate.ToString("MM/dd/yyyy") - @promotion.EndDate.ToString("MM/dd/yyyy")
+                        </div>
+
+                        @if (promotion.Discount != null)
+                        {
+                            <div class="small mb-3">
+                                <i class="fas fa-tag me-1"></i>
+                                Linked to: @promotion.Discount.DiscountName (@promotion.Discount.Code)
+                            </div>
+                        }
+
+                        <div class="btn-group w-100">
+                            <a asp-area="Admin" asp-controller="Promotion" asp-action="Edit"
+                               asp-route-id="@promotion.PromotionId" class="btn btn-sm btn-outline-success">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-outline-warning"
+                                    onclick="togglePromotionStatus(@promotion.PromotionId, @promotion.IsActive.ToString().ToLower())">
+                                <i class="fas fa-power-off"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                    onclick="confirmDelete('Delete this promotion?', 'deleteForm-@promotion.PromotionId')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <form id="deleteForm-@promotion.PromotionId"
+                                  asp-action="Delete" asp-route-id="@promotion.PromotionId"
+                                  method="post" style="display: none;">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex - 1, status = ViewBag.Status })">
+                        <i class="fas fa-chevron-left me-1"></i>Previous
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i, status = ViewBag.Status })">
+                        @i
+                    </a>
+                </li>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex + 1, status = ViewBag.Status })">
+                        Next<i class="fas fa-chevron-right ms-1"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+else
+{
+    <div class="text-center py-5">
+        <div class="mb-4">
+            <i class="fas fa-bullhorn fa-3x text-muted"></i>
+        </div>
+        <h4 class="text-muted">No promotions found</h4>
+        <p class="text-muted mb-4">Create your first promotion to get started</p>
+        <a asp-area="Admin" asp-controller="Promotion" asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Create Promotion
+        </a>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function togglePromotionStatus(id, isActive) {
+            $.ajax({
+                url: '@Url.Action("ToggleStatus", "Promotion")',
+                type: 'POST',
+                data: { id: id },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+        // Sortable promotions
+        $(document).ready(function() {
+            $("#promotionsContainer").sortable({
+                update: function(event, ui) {
+                    var promotionIds = [];
+                    $("#promotionsContainer .col-md-6").each(function() {
+                        promotionIds.push($(this).data('id'));
+                    });
+
+                    $.ajax({
+                        url: '@Url.Action("UpdateOrder", "Promotion")',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(promotionIds),
+                        success: function(response) {
+                            if (response.success) {
+                                console.log('Order updated successfully');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+
+@functions {
+    private string GetPromotionStatus(Promotion promotion)
+    {
+        if (promotion.EndDate < DateTime.Now)
+            return "Expired";
+        if (promotion.StartDate > DateTime.Now)
+            return "Upcoming";
+        if (promotion.IsActive)
+            return "Active";
+        return "Inactive";
+    }
+
+    private string GetPromotionBadgeClass(Promotion promotion)
+    {
+        if (promotion.EndDate < DateTime.Now)
+            return "bg-secondary";
+        if (promotion.StartDate > DateTime.Now)
+            return "bg-info";
+        if (promotion.IsActive)
+            return "bg-success";
+        return "bg-danger";
+    }
+}

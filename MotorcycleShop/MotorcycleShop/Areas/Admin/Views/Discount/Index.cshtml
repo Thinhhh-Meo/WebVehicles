@@ -1,0 +1,210 @@
+﻿@model PaginatedList<Discount>
+@{
+    ViewData["Title"] = "Discount Management";
+    ViewData["Controller"] = "Discount";
+    ViewData["Action"] = "Index";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-0">Discount Management</h1>
+        <p class="text-muted mb-0">Manage discount codes and promotions</p>
+    </div>
+    <div>
+        <a asp-area="Admin" asp-controller="Discount" asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Create Discount
+        </a>
+    </div>
+</div>
+
+<!-- Filters -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-8">
+                <select name="status" class="form-select" onchange="this.form.submit()">
+                    <option value="">All Discounts</option>
+                    <option value="active" selected="@(ViewBag.Status == "active")">Active</option>
+                    <option value="expired" selected="@(ViewBag.Status == "expired")">Expired</option>
+                    <option value="upcoming" selected="@(ViewBag.Status == "upcoming")">Upcoming</option>
+                    <option value="inactive" selected="@(ViewBag.Status == "inactive")">Inactive</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <a asp-area="Admin" asp-controller="Discount" asp-action="Index" class="btn btn-outline-secondary w-100">
+                    <i class="fas fa-undo me-2"></i>Reset Filter
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Discounts Table -->
+<div class="card">
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover data-table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Value</th>
+                            <th>Period</th>
+                            <th>Usage</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var discount in Model)
+                        {
+                            var isActive = discount.IsActive && discount.DateStart <= DateTime.Now && discount.DateEnd >= DateTime.Now;
+                            var isExpired = discount.DateEnd < DateTime.Now;
+                            var isUpcoming = discount.DateStart > DateTime.Now;
+
+                            <tr>
+                                <td>
+                                    <strong class="text-primary">@discount.Code</strong>
+                                </td>
+                                <td>
+                                    <div>@discount.DiscountName</div>
+                                    @if (!string.IsNullOrEmpty(discount.Description))
+                                    {
+                                        <div class="text-muted small">@discount.Description.Substring(0, Math.Min(50, discount.Description.Length))...</div>
+                                    }
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">@discount.DiscountType</span>
+                                </td>
+                                <td>
+                                    @if (discount.DiscountType == DiscountType.Percentage)
+                                    {
+                                        <span class="badge bg-success">@discount.DiscountValue%</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">@string.Format("{0:N0}", discount.DiscountValue) đ</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="small">@discount.DateStart.ToString("MM/dd/yyyy")</div>
+                                    <div class="small">to @discount.DateEnd.ToString("MM/dd/yyyy")</div>
+                                </td>
+                                <td>
+                                    <div>@discount.UsedCount / @(discount.UsageLimit?.ToString() ?? "∞")</div>
+                                    <div class="progress" style="height: 5px;">
+                                        @{
+                                            var usagePercent = discount.UsageLimit.HasValue ?
+                                            (discount.UsedCount * 100 / discount.UsageLimit.Value) : 0;
+                                        }
+                                        <div class="progress-bar @(usagePercent >= 80 ? "bg-danger" : "bg-success")"
+                                             style="width: @Math.Min(usagePercent, 100)%"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    @if (isExpired)
+                                    {
+                                        <span class="badge bg-secondary">Expired</span>
+                                    }
+                                    else if (isUpcoming)
+                                    {
+                                        <span class="badge bg-info">Upcoming</span>
+                                    }
+                                    else if (isActive)
+                                    {
+                                        <span class="badge bg-success">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Inactive</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-area="Admin" asp-controller="Discount" asp-action="UsageReport"
+                                           asp-route-id="@discount.DiscountId" class="btn btn-outline-info" title="Usage Report">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="Discount" asp-action="Edit"
+                                           asp-route-id="@discount.DiscountId" class="btn btn-outline-success" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-outline-warning"
+                                                onclick="toggleDiscountStatus(@discount.DiscountId, @discount.IsActive.ToString().ToLower())" title="Toggle Status">
+                                            <i class="fas fa-power-off"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex - 1, status = ViewBag.Status })">
+                                <i class="fas fa-chevron-left me-1"></i>Previous
+                            </a>
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i, status = ViewBag.Status })">
+                                @i
+                            </a>
+                        </li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex + 1, status = ViewBag.Status })">
+                                Next<i class="fas fa-chevron-right ms-1"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="fas fa-tag fa-3x text-muted"></i>
+                </div>
+                <h4 class="text-muted">No discounts found</h4>
+                <p class="text-muted mb-4">Create your first discount code to get started</p>
+                <a asp-area="Admin" asp-controller="Discount" asp-action="Create" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Create Discount
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function toggleDiscountStatus(id, isActive) {
+            $.ajax({
+                url: '@Url.Action("ToggleStatus", "Discount")',
+                type: 'POST',
+                data: { id: id },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    }
+                }
+            });
+        }
+    </script>
+}

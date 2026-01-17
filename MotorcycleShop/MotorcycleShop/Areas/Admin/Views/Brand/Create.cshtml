@@ -1,0 +1,768 @@
+﻿@model MotorcycleShop.Models.Brand
+@{
+    ViewData["Title"] = "Create Brand";
+    ViewData["Controller"] = "Brand";
+    ViewData["Action"] = "Create";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h1 class="h3 mb-0"><i class="fas fa-plus-circle me-2"></i>@ViewData["Title"]</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Brand Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-tags me-2"></i>Brand Details</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" id="createBrandForm">
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <!-- Brand Name -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Name" class="form-label">Brand Name *</label>
+                                <input asp-for="Name" class="form-control" placeholder="e.g., Honda, Yamaha, GS"
+                                       data-val="true"
+                                       data-val-required="Brand name is required"
+                                       data-val-length="Brand name must be between 2 and 100 characters"
+                                       data-val-length-max="100"
+                                       data-val-length-min="2" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+
+                            <!-- Country -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Country" class="form-label">Country of Origin</label>
+                                <input asp-for="Country" class="form-control" placeholder="e.g., Japan, Vietnam"
+                                       data-val="true"
+                                       data-val-length="Country name must be less than 50 characters"
+                                       data-val-length-max="50" />
+                                <span asp-validation-for="Country" class="text-danger"></span>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"
+                                      placeholder="Brief description about the brand..."
+                                      data-val="true"
+                                      data-val-length="Description must be less than 500 characters"
+                                      data-val-length-max="500"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                            <div class="form-text">
+                                <span id="descriptionCounter">0</span>/500 characters
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Established Year -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="EstablishedYear" class="form-label">Established Year *</label>
+                                <input asp-for="EstablishedYear" class="form-control" type="date"
+                                       data-val="true"
+                                       data-val-required="Established year is required"
+                                       data-val-range="Year must be between 1800 and current year"
+                                       data-val-range-min="1800"
+                                       data-val-range-max="@DateTime.Now.Year" />
+                                <span asp-validation-for="EstablishedYear" class="text-danger"></span>
+                                <div class="valid-feedback">Valid year</div>
+                            </div>
+
+                            <!-- Logo Upload -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Brand Logo (Optional)</label>
+                                <input type="file" name="logoFile" class="form-control" accept="image/*" id="logoUpload"
+                                       data-val="true"
+                                       data-val-filesize="File size must be less than 5MB"
+                                       data-val-filesize-maxsize="5242880"
+                                       data-val-imageformat="Only JPG, PNG, GIF, WebP allowed"
+                                       data-val-imageformat-formats="image/jpeg,image/png,image/gif,image/webp" />
+                                <span class="text-danger" data-valmsg-for="logoFile" data-valmsg-replace="true"></span>
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Recommended: Square logo, PNG format with transparent background (max 5MB)
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Logo Preview -->
+                        <div class="mb-4">
+                            <label class="form-label">Logo Preview</label>
+                            <div class="logo-preview-container">
+                                <div class="logo-preview" id="logoPreview">
+                                    <div class="logo-placeholder">
+                                        <i class="fas fa-image fa-3x text-muted"></i>
+                                        <p class="mt-2">No logo selected</p>
+                                    </div>
+                                </div>
+                                <div class="logo-info mt-2 small text-muted" id="logoInfo" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <i class="fas fa-file me-1"></i>
+                                            <span id="fileName">-</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fas fa-weight me-1"></i>
+                                            <span id="fileSize">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <i class="fas fa-expand me-1"></i>
+                                            <span id="fileDimensions">-</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fas fa-check-circle me-1"></i>
+                                            <span id="fileStatus">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input asp-for="IsActive" class="form-check-input" type="checkbox" role="switch" id="isActiveSwitch" checked>
+                                <label class="form-check-label" for="isActiveSwitch">
+                                    <strong>Active Brand</strong>
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">Brand will be available for product selection when active</small>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to List
+                            </a>
+                            <div>
+                                <button type="button" class="btn btn-outline-warning me-2" id="resetBtn">
+                                    <i class="fas fa-redo me-2"></i>Reset Form
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save me-2"></i>Create Brand
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!-- Guidelines -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Brand Guidelines</h5>
+                </div>
+                <div class="card-body">
+                    <h6><i class="fas fa-check-circle text-success me-2"></i>Best Practices</h6>
+                    <ul class="mb-3">
+                        <li>Use the full official brand name</li>
+                        <li>Provide accurate country of origin</li>
+                        <li>Upload high-quality logo (min 200x200px)</li>
+                        <li>Add informative brand description</li>
+                    </ul>
+
+                    <h6><i class="fas fa-exclamation-triangle text-warning me-2"></i>Important Notes</h6>
+                    <ul>
+                        <li>Brand names must be unique</li>
+                        <li>Inactive brands won't appear in product forms</li>
+                        <li>Brands with products cannot be deleted</li>
+                        <li>Logo will be displayed in product listings</li>
+                    </ul>
+
+                    <h6><i class="fas fa-ruler-combined text-info me-2"></i>Logo Requirements</h6>
+                    <ul>
+                        <li>Max file size: 5MB</li>
+                        <li>Formats: JPG, PNG, GIF, WebP</li>
+                        <li>Recommended: 300x300px minimum</li>
+                        <li>Background: Transparent preferred</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Brand Preview -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-eye me-2"></i>Brand Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="brand-preview text-center">
+                        <div class="preview-logo mb-3">
+                            <img src="" id="previewLogo" class="img-fluid rounded" style="max-height: 100px; display: none; background: #f8f9fa; padding: 10px;">
+                            <div class="logo-placeholder bg-light rounded-circle d-inline-flex align-items-center justify-content-center"
+                                 style="width: 100px; height: 100px;" id="previewPlaceholder">
+                                <i class="fas fa-image fa-2x text-muted"></i>
+                            </div>
+                        </div>
+
+                        <h4 id="previewName" class="mb-2">Brand Name</h4>
+                        <p id="previewCountry" class="text-muted mb-2">
+                            <i class="fas fa-globe me-1"></i>Country
+                        </p>
+                        <p id="previewDescription" class="small text-muted mb-2">Brand description will appear here...</p>
+                        <p id="previewYear" class="small">
+                            <i class="fas fa-calendar-alt me-1"></i>
+                            Established: <span class="fw-bold">@DateTime.Now.Year</span>
+                        </p>
+
+                        <div class="preview-status mt-3">
+                            <span class="badge bg-success" id="previewStatus">
+                                <i class="fas fa-check-circle me-1"></i>Active
+                            </span>
+                        </div>
+
+                        <div class="preview-actions mt-3">
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="testLogoBtn">
+                                <i class="fas fa-image me-1"></i>Test Logo
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-info" id="copyPreviewBtn">
+                                <i class="fas fa-copy me-1"></i>Copy Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .logo-preview-container {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
+
+            .logo-preview-container:hover {
+                border-color: var(--primary-color);
+                background: #f0f2f5;
+            }
+
+            .logo-preview-container.drag-over {
+                border-color: var(--primary-color);
+                background: rgba(67, 97, 238, 0.05);
+                transform: scale(1.02);
+            }
+
+        .logo-preview {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .logo-placeholder {
+            color: #6c757d;
+        }
+
+        #logoPreview img {
+            max-width: 200px;
+            max-height: 150px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+            #logoPreview img:hover {
+                transform: scale(1.05);
+            }
+
+        .brand-preview {
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .preview-logo {
+            position: relative;
+            margin: 0 auto;
+            width: 120px;
+            height: 120px;
+        }
+
+        .logo-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .preview-actions .btn {
+            font-size: 0.8rem;
+            padding: 3px 8px;
+        }
+
+        /* Character counter */
+        #descriptionCounter {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+            #descriptionCounter.warning {
+                color: #ffc107;
+            }
+
+            #descriptionCounter.danger {
+                color: #dc3545;
+            }
+
+        /* File validation status */
+        .file-status-valid {
+            color: #28a745;
+        }
+
+        .file-status-invalid {
+            color: #dc3545;
+        }
+
+        /* Form validation styles */
+        .form-control.is-invalid ~ .valid-feedback,
+        .form-control.is-valid ~ .text-danger {
+            display: none;
+        }
+    </style>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+                $(document).ready(function () {
+                    // Initialize form validation
+                    var validator = $('#createBrandForm').validate({
+                        errorClass: 'is-invalid',
+                        validClass: 'is-valid',
+                        errorElement: 'div',
+                        errorPlacement: function (error, element) {
+                            if (element.hasClass('form-check-input')) {
+                                error.insertAfter(element.closest('.form-check'));
+                            } else if (element.parent('.input-group').length) {
+                                error.insertAfter(element.parent());
+                            } else {
+                                error.insertAfter(element);
+                            }
+                        },
+                        highlight: function (element, errorClass, validClass) {
+                            $(element).addClass(errorClass).removeClass(validClass);
+                            $(element).closest('.mb-3').addClass('has-error');
+                        },
+                        unhighlight: function (element, errorClass, validClass) {
+                            $(element).removeClass(errorClass).addClass(validClass);
+                            $(element).closest('.mb-3').removeClass('has-error');
+                        },
+                        rules: {
+                            Name: {
+                                required: true,
+                                minlength: 2,
+                                maxlength: 100,
+                                remote: {
+                                    url: '@Url.Action("CheckBrandName", "Brand")',
+                                    type: "post",
+                                    data: {
+                                        name: function () {
+                                            return $('#Name').val();
+                                        }
+                                    }
+                                }
+                            },
+                            Country: {
+                                maxlength: 50
+                            },
+                            Description: {
+                                maxlength: 500
+                            },
+                            EstablishedYear: {
+                                required: true,
+                                date: true,
+                                range: [1800, @DateTime.Now.Year]
+                            }
+                        },
+                        messages: {
+                            Name: {
+                                required: "Please enter brand name",
+                                minlength: "Brand name must be at least 2 characters",
+                                maxlength: "Brand name cannot exceed 100 characters",
+                                remote: "This brand name already exists"
+                            },
+                            Country: {
+                                maxlength: "Country name cannot exceed 50 characters"
+                            },
+                            Description: {
+                                maxlength: "Description cannot exceed 500 characters"
+                            },
+                            EstablishedYear: {
+                                required: "Please select established year",
+                                date: "Please enter a valid date",
+                                range: "Year must be between 1800 and @DateTime.Now.Year"
+                            }
+                        },
+                        submitHandler: function (form) {
+                            // Custom validation before submit
+                            if (validateBeforeSubmit()) {
+                                $('#submitBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Creating...');
+                                form.submit();
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+
+                    // Description character counter
+                    $('#Description').on('input', function () {
+                        var length = $(this).val().length;
+                        var counter = $('#descriptionCounter');
+                        counter.text(length);
+
+                        if (length > 450) {
+                            counter.addClass('danger').removeClass('warning');
+                        } else if (length > 400) {
+                            counter.addClass('warning').removeClass('danger');
+                        } else {
+                            counter.removeClass('warning danger');
+                        }
+                    });
+
+                    // Drag and drop for logo upload
+                    const logoPreview = $('#logoPreview')[0];
+                    const logoUpload = $('#logoUpload')[0];
+                    const container = $('.logo-preview-container')[0];
+
+                    // Prevent default drag behaviors
+                    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                        container.addEventListener(eventName, preventDefaults, false);
+                        document.body.addEventListener(eventName, preventDefaults, false);
+                    });
+
+                    // Highlight drop area when item is dragged over it
+                    ['dragenter', 'dragover'].forEach(eventName => {
+                        container.addEventListener(eventName, highlight, false);
+                    });
+
+                    ['dragleave', 'drop'].forEach(eventName => {
+                        container.addEventListener(eventName, unhighlight, false);
+                    });
+
+                    // Handle dropped files
+                    container.addEventListener('drop', handleDrop, false);
+
+                    function preventDefaults(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+
+                    function highlight(e) {
+                        container.classList.add('drag-over');
+                    }
+
+                    function unhighlight(e) {
+                        container.classList.remove('drag-over');
+                    }
+
+                    function handleDrop(e) {
+                        const dt = e.dataTransfer;
+                        const files = dt.files;
+                        if (files.length > 0) {
+                            logoUpload.files = files;
+                            handleLogoFile(files[0]);
+                        }
+                    }
+
+                    // Logo file selection handler
+                    $('#logoUpload').change(function () {
+                        if (this.files && this.files[0]) {
+                            handleLogoFile(this.files[0]);
+                        } else {
+                            resetLogoPreview();
+                        }
+                    });
+
+                    // Click on preview to trigger file input
+                    $('#logoPreview').click(function () {
+                        $('#logoUpload').click();
+                    });
+
+                    function handleLogoFile(file) {
+                        // Validate file
+                        const validation = validateLogoFile(file);
+                        if (!validation.valid) {
+                            showLogoError(validation.message);
+                            return;
+                        }
+
+                        // Update file info
+                        updateFileInfo(file);
+
+                        // Create preview
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            // Update form preview
+                            $('#logoPreview').html(`<img src="${e.target.result}" alt="Logo Preview" class="img-fluid">`);
+
+                            // Update live preview
+                            $('#previewLogo').attr('src', e.target.result).show();
+                            $('#previewPlaceholder').hide();
+
+                            // Check image dimensions
+                            const img = new Image();
+                            img.onload = function () {
+                                const dimensions = `${this.width}×${this.height}px`;
+                                $('#fileDimensions').text(dimensions);
+
+                                if (this.width < 200 || this.height < 200) {
+                                    $('#fileStatus').html('<span class="file-status-invalid">Small image (min 200×200px)</span>');
+                                } else if (this.width !== this.height) {
+                                    $('#fileStatus').html('<span class="file-status-invalid">Not square</span>');
+                                } else {
+                                    $('#fileStatus').html('<span class="file-status-valid">Good dimensions</span>');
+                                }
+                            };
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+
+                    function validateLogoFile(file) {
+                        // Check file size (max 5MB)
+                        const maxSize = 5 * 1024 * 1024;
+                        if (file.size > maxSize) {
+                            return { valid: false, message: 'File size must be less than 5MB' };
+                        }
+
+                        // Check file type
+                        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                        if (!validTypes.includes(file.type)) {
+                            return { valid: false, message: 'Only JPG, PNG, GIF, WebP images allowed' };
+                        }
+
+                        return { valid: true };
+                    }
+
+                    function updateFileInfo(file) {
+                        const fileSize = (file.size / 1024 / 1024).toFixed(2); // MB
+                        $('#fileName').text(file.name);
+                        $('#fileSize').text(fileSize + ' MB');
+                        $('#logoInfo').show();
+                    }
+
+                    function showLogoError(message) {
+                        $('#logoPreview').html(`
+                            <div class="logo-placeholder">
+                                <i class="fas fa-exclamation-triangle fa-3x text-danger"></i>
+                                <p class="mt-2 text-danger">${message}</p>
+                            </div>
+                        `);
+                        $('#logoUpload').val('');
+                        $('#logoInfo').hide();
+                        $('#previewLogo').hide();
+                        $('#previewPlaceholder').show();
+                    }
+
+                    function resetLogoPreview() {
+                        $('#logoPreview').html(`
+                            <div class="logo-placeholder">
+                                <i class="fas fa-image fa-3x text-muted"></i>
+                                <p class="mt-2">No logo selected</p>
+                            </div>
+                        `);
+                        $('#logoInfo').hide();
+                        $('#previewLogo').hide();
+                        $('#previewPlaceholder').show();
+                    }
+
+                    // Live preview updates
+                    $('#Name').on('input', function () {
+                        const value = $(this).val();
+                        $('#previewName').text(value || 'Brand Name');
+                        $('#previewName').toggleClass('text-muted', !value);
+                    });
+
+                    $('#Country').on('input', function () {
+                        const value = $(this).val();
+                        $('#previewCountry').text(value || 'Country');
+                        $('#previewCountry').toggleClass('text-muted', !value);
+                    });
+
+                    $('#Description').on('input', function () {
+                        const value = $(this).val();
+                        $('#previewDescription').text(value || 'Brand description will appear here...');
+                        $('#previewDescription').toggleClass('text-muted', !value);
+                    });
+
+                    $('#EstablishedYear').on('change', function () {
+                        const value = $(this).val();
+                        if (value) {
+                            const year = new Date(value).getFullYear();
+                            $('#previewYear').html(`<i class="fas fa-calendar-alt me-1"></i>Established: <span class="fw-bold">${year}</span>`);
+                        } else {
+                            $('#previewYear').html(`<i class="fas fa-calendar-alt me-1"></i>Established: <span class="fw-bold">${new Date().getFullYear()}</span>`);
+                        }
+                    });
+
+                    $('#isActiveSwitch').change(function () {
+                        if ($(this).is(':checked')) {
+                            $('#previewStatus').removeClass('bg-danger').addClass('bg-success')
+                                .html('<i class="fas fa-check-circle me-1"></i>Active');
+                        } else {
+                            $('#previewStatus').removeClass('bg-success').addClass('bg-danger')
+                                .html('<i class="fas fa-times-circle me-1"></i>Inactive');
+                        }
+                    });
+
+                    // Set established year to current year if empty
+                    if (!$('#EstablishedYear').val()) {
+                        const currentYear = new Date().getFullYear();
+                        $('#EstablishedYear').val(currentYear + '-01-01');
+                        $('#previewYear').html(`<i class="fas fa-calendar-alt me-1"></i>Established: <span class="fw-bold">${currentYear}</span>`);
+                    }
+
+                    // Reset button
+                    $('#resetBtn').click(function () {
+                        Swal.fire({
+                            title: 'Reset Form?',
+                            text: 'All entered data will be cleared.',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, Reset',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $('#createBrandForm')[0].reset();
+                                validator.resetForm();
+                                resetLogoPreview();
+                                $('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
+                                $('.has-error').removeClass('has-error');
+                                $('.valid-feedback').hide();
+                                $('#descriptionCounter').text('0').removeClass('warning danger');
+                                $('#previewLogo').hide();
+                                $('#previewPlaceholder').show();
+                                $('#previewName').text('Brand Name').addClass('text-muted');
+                                $('#previewCountry').text('Country').addClass('text-muted');
+                                $('#previewDescription').text('Brand description will appear here...').addClass('text-muted');
+                                $('#previewStatus').removeClass('bg-danger').addClass('bg-success')
+                                    .html('<i class="fas fa-check-circle me-1"></i>Active');
+                                $('#isActiveSwitch').prop('checked', true);
+                                const currentYear = new Date().getFullYear();
+                                $('#EstablishedYear').val(currentYear + '-01-01');
+                                $('#previewYear').html(`<i class="fas fa-calendar-alt me-1"></i>Established: <span class="fw-bold">${currentYear}</span>`);
+                            }
+                        });
+                    });
+
+                    // Test logo button
+                    $('#testLogoBtn').click(function () {
+                        if ($('#previewLogo').is(':visible')) {
+                            Swal.fire({
+                                title: 'Logo Preview',
+                                html: `<img src="${$('#previewLogo').attr('src')}" class="img-fluid" style="max-width: 300px;">`,
+                                showCloseButton: true,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            Swal.fire('Info', 'No logo selected for preview', 'info');
+                        }
+                    });
+
+                    // Copy preview info button
+                    $('#copyPreviewBtn').click(function () {
+                        const brandInfo = {
+                            name: $('#previewName').text(),
+                            country: $('#previewCountry').text(),
+                            description: $('#previewDescription').text(),
+                            year: $('#previewYear').find('.fw-bold').text(),
+                            status: $('#previewStatus').text()
+                        };
+
+                        const text = `Brand: ${brandInfo.name}
+        Country: ${brandInfo.country}
+        Established: ${brandInfo.year}
+        Status: ${brandInfo.status}
+        Description: ${brandInfo.description}`;
+
+                        navigator.clipboard.writeText(text).then(() => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Copied!',
+                                text: 'Brand information copied to clipboard',
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        });
+                    });
+
+                    // Real-time validation on blur
+                    $('input, textarea').on('blur', function () {
+                        $(this).valid();
+                    });
+
+                    // Keyboard shortcuts
+                    $(document).keydown(function (e) {
+                        // Ctrl + Enter to submit
+                        if (e.ctrlKey && e.keyCode === 13) {
+                            e.preventDefault();
+                            $('#submitBtn').click();
+                        }
+                        // Escape to reset
+                        if (e.keyCode === 27) {
+                            e.preventDefault();
+                            $('#resetBtn').click();
+                        }
+                    });
+
+                    // Form validation before submit
+                    function validateBeforeSubmit() {
+                        // Additional custom validation
+                        const establishedYear = new Date($('#EstablishedYear').val()).getFullYear();
+                        const currentYear = new Date().getFullYear();
+
+                        if (establishedYear > currentYear) {
+                            Swal.fire('Error', 'Established year cannot be in the future', 'error');
+                            $('#EstablishedYear').focus();
+                            return false;
+                        }
+
+                        if (establishedYear < 1800) {
+                            Swal.fire('Error', 'Please enter a valid established year', 'error');
+                            $('#EstablishedYear').focus();
+                            return false;
+                        }
+
+                        // Check if logo file is valid
+                        const logoFile = $('#logoUpload')[0].files[0];
+                        if (logoFile) {
+                            const validation = validateLogoFile(logoFile);
+                            if (!validation.valid) {
+                                Swal.fire('Error', validation.message, 'error');
+                                $('#logoUpload').focus();
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    }
+
+                    // Initialize character counter
+                    $('#Description').trigger('input');
+                });
+    </script>
+}

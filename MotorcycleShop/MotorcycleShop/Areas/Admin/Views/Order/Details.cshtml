@@ -1,0 +1,192 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Order Details #" + Model.OrderId;
+    ViewData["Controller"] = "Order";
+    ViewData["Action"] = "Details";
+}
+
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Order Information -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Order Information</h5>
+                <span class="badge badge-@Model.Status.ToString().ToLower()">@Model.Status</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <strong>Order ID:</strong> #@Model.OrderId
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Order Date:</strong> @Model.OrderDate.ToString("yyyy-MM-dd HH:mm")
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Customer:</strong> @Model.User?.FullName
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Email:</strong> @Model.User?.Email
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Phone:</strong> @Model.PhoneNumber
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Payment Method:</strong> @Model.PaymentMethod
+                    </div>
+                    <div class="col-12 mb-3">
+                        <strong>Shipping Address:</strong> @Model.ShippingAddress
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.Note))
+                    {
+                        <div class="col-12 mb-3">
+                            <strong>Customer Note:</strong> @Model.Note
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-box me-2"></i>Order Items (@Model.OrderDetails?.Count items)</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderDetails)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="@item.Product.ImageUrl" alt="@item.Product.Name"
+                                                 style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-right: 10px;">
+                                            <div>
+                                                <strong>@item.Product.Name</strong>
+                                                <div class="text-muted small">@item.Product.BrandName</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>@string.Format("{0:N0}", item.UnitPrice) đ</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@string.Format("{0:N0}", item.Quantity * item.UnitPrice) đ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Order Summary -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-receipt me-2"></i>Order Summary</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Subtotal:</span>
+                    <span>@string.Format("{0:N0}", Model.TotalPrice) đ</span>
+                </div>
+
+                @if (Model.DiscountAmount > 0)
+                {
+                    <div class="d-flex justify-content-between mb-2 text-danger">
+                        <span>Discount (@Model.Discount?.Code):</span>
+                        <span>-@string.Format("{0:N0}", Model.DiscountAmount) đ</span>
+                    </div>
+                }
+
+                <hr>
+                <div class="d-flex justify-content-between mb-3">
+                    <strong>Total:</strong>
+                    <strong class="h5 text-primary">@string.Format("{0:N0}", Model.FinalPrice) đ</strong>
+                </div>
+
+                @if (Model.Discount != null)
+                {
+                    <div class="alert alert-info small">
+                        <i class="fas fa-tag me-1"></i>
+                        <strong>Discount Applied:</strong> @Model.Discount.DiscountName (@Model.Discount.Code)
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Order Actions -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>Order Actions</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="UpdateStatus" method="post" class="mb-3">
+                    <input type="hidden" name="id" value="@Model.OrderId" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Update Order Status</label>
+                        <select name="status" class="form-select">
+                            <option value="@OrderStatus.Pending" selected="@(Model.Status == OrderStatus.Pending)">Pending</option>
+                            <option value="@OrderStatus.Confirmed" selected="@(Model.Status == OrderStatus.Confirmed)">Confirmed</option>
+                            <option value="@OrderStatus.Shipping" selected="@(Model.Status == OrderStatus.Shipping)">Shipping</option>
+                            <option value="@OrderStatus.Delivered" selected="@(Model.Status == OrderStatus.Delivered)">Delivered</option>
+                            <option value="@OrderStatus.Cancelled" selected="@(Model.Status == OrderStatus.Cancelled)">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-save me-2"></i>Update Status
+                    </button>
+                </form>
+
+                <div class="d-grid gap-2">
+                    <a href="mailto:@Model.User?.Email?subject=Order #@Model.OrderId" class="btn btn-outline-primary">
+                        <i class="fas fa-envelope me-2"></i>Email Customer
+                    </a>
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Orders
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-user me-2"></i>Customer Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>Full Name:</strong><br>
+                    @Model.User?.FullName
+                </div>
+                <div class="mb-3">
+                    <strong>Email:</strong><br>
+                    @Model.User?.Email
+                </div>
+                <div class="mb-3">
+                    <strong>Phone:</strong><br>
+                    @Model.User?.PhoneNumber
+                </div>
+                <div class="mb-3">
+                    <strong>Address:</strong><br>
+                    @Model.User?.Address
+                </div>
+                <a asp-area="Admin" asp-controller="User" asp-action="Details" asp-route-id="@Model.UserId"
+                   class="btn btn-sm btn-outline-info w-100">
+                    <i class="fas fa-eye me-2"></i>View Customer Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

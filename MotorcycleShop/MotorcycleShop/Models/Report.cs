@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 
 namespace MotorcycleShop.Models
 {
@@ -23,7 +24,6 @@ namespace MotorcycleShop.Models
         public string DataJson { get; set; } // Store report data as JSON
 
         public string FilePath { get; set; } // Path to exported file (PDF, Excel)
-
         // Navigation property
         public ApplicationUser GeneratedByUser { get; set; }
     }

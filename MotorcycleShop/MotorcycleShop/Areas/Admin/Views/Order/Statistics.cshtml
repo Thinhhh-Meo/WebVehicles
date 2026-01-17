@@ -1,0 +1,441 @@
+﻿@using MotorcycleShop.Models
+@using System.Globalization
+@{
+    ViewData["Title"] = "Order Statistics";
+    ViewData["Controller"] = "Order";
+    ViewData["Action"] = "Statistics";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h1 class="h3 mb-0"><i class="fas fa-chart-line me-2"></i>@ViewData["Title"]</h1>
+        </div>
+    </div>
+
+    <!-- Filter Card -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-filter me-2"></i>Statistics Filters</h5>
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">From Date</label>
+                    <input type="date" class="form-control" name="fromDate" id="fromDate" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">To Date</label>
+                    <input type="date" class="form-control" name="toDate" id="toDate" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" name="status" id="status">
+                        <option value="">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Shipping">Shipping</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Payment Method</label>
+                    <select class="form-select" name="paymentMethod" id="paymentMethod">
+                        <option value="">All Methods</option>
+                        <option value="COD">COD</option>
+                        <option value="BankTransfer">Bank Transfer</option>
+                        <option value="CreditCard">Credit Card</option>
+                    </select>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-chart-bar me-2"></i>Generate Report</button>
+                    <button type="button" id="resetFilter" class="btn btn-outline-secondary"><i class="fas fa-redo me-2"></i>Reset</button>
+                    <button type="button" id="exportBtn" class="btn btn-success"><i class="fas fa-file-excel me-2"></i>Export to Excel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Summary Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card stat-card stat-orders">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Total Orders</h6>
+                            <h2 class="mt-2 mb-0" id="totalOrders">0</h2>
+                            <p class="mb-0">All time</p>
+                        </div>
+                        <i class="fas fa-shopping-cart fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card stat-revenue">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Total Revenue</h6>
+                            <h2 class="mt-2 mb-0" id="totalRevenue">0đ</h2>
+                            <p class="mb-0">All time</p>
+                        </div>
+                        <i class="fas fa-money-bill-wave fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card stat-users">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Average Order Value</h6>
+                            <h2 class="mt-2 mb-0" id="avgOrderValue">0đ</h2>
+                            <p class="mb-0">Per order</p>
+                        </div>
+                        <i class="fas fa-chart-pie fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card stat-products">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Conversion Rate</h6>
+                            <h2 class="mt-2 mb-0" id="conversionRate">0%</h2>
+                            <p class="mb-0">Checkout success</p>
+                        </div>
+                        <i class="fas fa-percentage fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Revenue Trend (Last 30 Days)</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="revenueChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Order Status Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="statusChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Statistics -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-table me-2"></i>Detailed Order Statistics</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover data-table" id="statisticsTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Orders</th>
+                                    <th>Revenue</th>
+                                    <th>Avg. Order Value</th>
+                                    <th>Successful Orders</th>
+                                    <th>Cancellation Rate</th>
+                                    <th>Popular Payment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Set default dates
+            const today = new Date();
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(today.getDate() - 30);
+
+            $('#fromDate').val(thirtyDaysAgo.toISOString().split('T')[0]);
+            $('#toDate').val(today.toISOString().split('T')[0]);
+
+            // Load statistics
+            loadStatistics();
+
+            // Reset filter
+            $('#resetFilter').click(function() {
+                $('#fromDate').val('');
+                $('#toDate').val('');
+                $('#status').val('');
+                $('#paymentMethod').val('');
+                loadStatistics();
+            });
+
+            // Export button
+            $('#exportBtn').click(function() {
+                Swal.fire({
+                    title: 'Export Report',
+                    text: 'Export statistics to Excel file?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Export',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        exportToExcel();
+                    }
+                });
+            });
+
+            // Form submit
+            $('form').submit(function(e) {
+                e.preventDefault();
+                loadStatistics();
+            });
+        });
+
+        function loadStatistics() {
+            const fromDate = $('#fromDate').val();
+            const toDate = $('#toDate').val();
+            const status = $('#status').val();
+            const paymentMethod = $('#paymentMethod').val();
+
+            // Show loading
+            Swal.fire({
+                title: 'Loading Statistics',
+                text: 'Please wait...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.ajax({
+                url: '@Url.Action("GetStatistics", "Order")',
+                type: 'GET',
+                data: {
+                    fromDate: fromDate,
+                    toDate: toDate,
+                    status: status,
+                    paymentMethod: paymentMethod
+                },
+                success: function(response) {
+                    Swal.close();
+                    if (response.success) {
+                        updateStatisticsUI(response.data);
+                    } else {
+                        Swal.fire('Error', response.message || 'Failed to load statistics', 'error');
+                    }
+                },
+                error: function() {
+                    Swal.close();
+                    Swal.fire('Error', 'Failed to load statistics', 'error');
+                }
+            });
+        }
+
+        function updateStatisticsUI(data) {
+            // Update summary cards
+            $('#totalOrders').text(data.summary.totalOrders.toLocaleString());
+            $('#totalRevenue').text(data.summary.totalRevenue.toLocaleString() + 'đ');
+            $('#avgOrderValue').text(data.summary.avgOrderValue.toLocaleString() + 'đ');
+            $('#conversionRate').text(data.summary.conversionRate + '%');
+
+            // Update charts
+            updateRevenueChart(data.charts.revenue);
+            updateStatusChart(data.charts.status);
+
+            // Update table
+            updateStatisticsTable(data.details);
+        }
+
+        function updateRevenueChart(revenueData) {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+
+            if (window.revenueChart) {
+                window.revenueChart.destroy();
+            }
+
+            window.revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: revenueData.labels,
+                    datasets: [{
+                        label: 'Revenue (VND)',
+                        data: revenueData.data,
+                        backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                        borderColor: 'rgba(67, 97, 238, 1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Revenue: ' + context.raw.toLocaleString() + 'đ';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString() + 'đ';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateStatusChart(statusData) {
+            const ctx = document.getElementById('statusChart').getContext('2d');
+            const colors = [
+                'rgba(255, 205, 86, 0.7)',  // Pending - Yellow
+                'rgba(54, 162, 235, 0.7)',  // Confirmed - Blue
+                'rgba(75, 192, 192, 0.7)',  // Shipping - Teal
+                'rgba(75, 192, 75, 0.7)',   // Delivered - Green
+                'rgba(255, 99, 132, 0.7)'   // Cancelled - Red
+            ];
+
+            if (window.statusChart) {
+                window.statusChart.destroy();
+            }
+
+            window.statusChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: statusData.labels,
+                    datasets: [{
+                        data: statusData.data,
+                        backgroundColor: colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${value} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateStatisticsTable(details) {
+            const tableBody = $('#statisticsTable tbody');
+            tableBody.empty();
+
+            if (details.length === 0) {
+                tableBody.append(`
+                    <tr>
+                        <td colspan="7" class="text-center py-4">
+                            <i class="fas fa-info-circle me-2"></i>No data available for the selected period
+                        </td>
+                    </tr>
+                `);
+                return;
+            }
+
+            details.forEach(item => {
+                tableBody.append(`
+                    <tr>
+                        <td>${item.date}</td>
+                        <td>${item.orders.toLocaleString()}</td>
+                        <td>${item.revenue.toLocaleString()}đ</td>
+                        <td>${item.avgOrderValue.toLocaleString()}đ</td>
+                        <td>${item.successfulOrders.toLocaleString()}</td>
+                        <td>${item.cancellationRate}%</td>
+                        <td><span class="badge bg-info">${item.popularPayment}</span></td>
+                    </tr>
+                `);
+            });
+
+            // Initialize DataTable if not already
+            if (!$.fn.DataTable.isDataTable('#statisticsTable')) {
+                $('#statisticsTable').DataTable();
+            }
+        }
+
+        function exportToExcel() {
+            const fromDate = $('#fromDate').val() || 'all';
+            const toDate = $('#toDate').val() || 'all';
+            const filename = `Order_Statistics_${fromDate}_to_${toDate}.xlsx`;
+
+            Swal.fire({
+                title: 'Exporting...',
+                text: 'Please wait while we generate the Excel file',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // In a real application, this would call a server endpoint
+            // For now, we'll simulate and create a download
+            setTimeout(() => {
+                Swal.close();
+                Swal.fire({
+                    title: 'Export Complete',
+                    text: 'Statistics exported successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
+                // Create a dummy download link
+                const link = document.createElement('a');
+                link.href = '#';
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 2000);
+        }
+    </script>
+}
