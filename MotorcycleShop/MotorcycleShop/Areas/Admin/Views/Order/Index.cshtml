@@ -1,0 +1,240 @@
+﻿@model PaginatedList<Order>
+
+@{
+    ViewData["Title"] = "Order Management";
+    ViewData["Controller"] = "Order";
+    ViewData["Action"] = "Index";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-0">Order Management</h1>
+        <p class="text-muted mb-0">Manage all customer orders</p>
+    </div>
+    <div>
+        <a asp-area="Admin" asp-controller="Report" asp-action="Sales" class="btn btn-outline-primary">
+            <i class="fas fa-chart-bar me-2"></i>Sales Report
+        </a>
+    </div>
+</div>
+
+<!-- FILTER -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-3">
+                <input type="text" name="search" class="form-control"
+                       placeholder="Search orders..."
+                       value="@ViewBag.Search" />
+            </div>
+
+            <div class="col-md-3">
+                <select name="status" class="form-select">
+                    <option value="">All Status</option>
+                    <option value="Pending" selected="@(ViewBag.Status == "Pending")">Pending</option>
+                    <option value="Confirmed" selected="@(ViewBag.Status == "Confirmed")">Confirmed</option>
+                    <option value="Shipping" selected="@(ViewBag.Status == "Shipping")">Shipping</option>
+                    <option value="Delivered" selected="@(ViewBag.Status == "Delivered")">Delivered</option>
+                    <option value="Cancelled" selected="@(ViewBag.Status == "Cancelled")">Cancelled</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <input type="date" name="fromDate" class="form-control" value="@ViewBag.FromDate" />
+            </div>
+
+            <div class="col-md-3">
+                <input type="date" name="toDate" class="form-control" value="@ViewBag.ToDate" />
+            </div>
+
+            <div class="col-md-12">
+                <button class="btn btn-primary me-2">
+                    <i class="fas fa-search me-2"></i>Filter
+                </button>
+                <a asp-area="Admin" asp-controller="Order" asp-action="Index"
+                   class="btn btn-outline-secondary">
+                    <i class="fas fa-undo me-2"></i>Reset
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- TABLE -->
+<div class="card">
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Products</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var order in Model)
+                        {
+                            var statusClass = order.Status switch
+                            {
+                                OrderStatus.Pending => "bg-warning text-dark",
+                                OrderStatus.Confirmed => "bg-info text-dark",
+                                OrderStatus.Shipping => "bg-primary",
+                                OrderStatus.Delivered => "bg-success",
+                                OrderStatus.Cancelled => "bg-danger",
+                                _ => "bg-secondary"
+                            };
+
+                            <tr>
+                                <td>
+                                    <span class="text-muted"></span>
+                                    <strong>@order.OrderId</strong>
+                                </td>
+
+                                <td>
+                                    <div>@order.User?.FullName</div>
+                                    <small class="text-muted">@order.User?.Email</small>
+                                </td>
+
+                                <td>
+                                    @order.OrderDate.ToString("dd/MM/yyyy HH:mm")
+                                </td>
+
+                                <!-- PRODUCTS -->
+                                <td>
+                                    @if (order.OrderDetails != null && order.OrderDetails.Any())
+                                    {
+                                        <div class="small">
+                                            @foreach (var item in order.OrderDetails.Take(2))
+                                            {
+                                                <div>
+                                                    • @item.Product.Name
+                                                    <span class="text-muted">x @item.Quantity</span>
+                                                </div>
+                                            }
+
+                                            @if (order.OrderDetails.Count > 2)
+                                            {
+                                                <div class="text-muted fst-italic">
+                                                    + @(order.OrderDetails.Count - 2) more
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">No items</span>
+                                    }
+                                </td>
+
+                                <td>
+                                    <strong>@order.FinalPrice.ToString("N0") đ</strong>
+                                </td>
+
+                                <td>@order.PaymentMethod</td>
+
+                                <td>
+                                    <span class="badge @statusClass">
+                                        @order.Status
+                                    </span>
+                                </td>
+
+                                <!-- ACTIONS -->
+                                <td class="text-end">
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-area="Admin"
+                                           asp-controller="Order"
+                                           asp-action="Details"
+                                           asp-route-id="@order.OrderId"
+                                           class="btn btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-success dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                <i class="fas fa-cog"></i>
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                @foreach (OrderStatus s in Enum.GetValues(typeof(OrderStatus)))
+                                                {
+                                                    if (s != order.Status)
+                                                    {
+                                                        <li>
+                                                            <form asp-area="Admin"
+                                                                  asp-controller="Order"
+                                                                  asp-action="UpdateStatus"
+                                                                  method="post">
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="id" value="@order.OrderId" />
+                                                                <input type="hidden" name="status" value="@s" />
+                                                                <button type="submit" class="dropdown-item">
+                                                                    Set as @s
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PAGINATION -->
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="@Url.Action("Index", new { page = Model.PageIndex - 1 })">
+                                Previous
+                            </a>
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a class="page-link"
+                               href="@Url.Action("Index", new { page = i })">
+                                @i
+                            </a>
+                        </li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="@Url.Action("Index", new { page = Model.PageIndex + 1 })">
+                                Next
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                <h5>No orders found</h5>
+            </div>
+        }
+    </div>
+</div>

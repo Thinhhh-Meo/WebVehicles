@@ -159,6 +159,57 @@ namespace MotorcycleShop.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MotorcycleShop.Models.Admin.AdminLog", b =>
+                {
+                    b.Property<int>("LogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LogId"));
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AdminId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Entity")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("EntityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IPAddress")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("NewValues")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldValues")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("LogId");
+
+                    b.HasIndex("AdminId");
+
+                    b.ToTable("AdminLogs");
+                });
+
             modelBuilder.Entity("MotorcycleShop.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -181,6 +232,9 @@ namespace MotorcycleShop.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -405,7 +459,7 @@ namespace MotorcycleShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Coupon");
+                    b.ToTable("Coupons");
                 });
 
             modelBuilder.Entity("MotorcycleShop.Models.Discount", b =>
@@ -467,8 +521,8 @@ namespace MotorcycleShop.Migrations
                         {
                             DiscountId = 1,
                             Code = "OPENING20",
-                            DateEnd = new DateTime(2026, 4, 10, 10, 30, 36, 172, DateTimeKind.Local).AddTicks(3908),
-                            DateStart = new DateTime(2026, 1, 10, 10, 30, 36, 172, DateTimeKind.Local).AddTicks(3907),
+                            DateEnd = new DateTime(2026, 4, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6721),
+                            DateStart = new DateTime(2026, 1, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6720),
                             Description = "20% discount for first order",
                             DiscountName = "Grand Opening Discount",
                             DiscountType = 1,
@@ -723,7 +777,7 @@ namespace MotorcycleShop.Migrations
                             ProductId = 1,
                             BrandId = 1,
                             BrandName = "Honda",
-                            CreatedDate = new DateTime(2026, 1, 10, 10, 30, 36, 172, DateTimeKind.Local).AddTicks(3815),
+                            CreatedDate = new DateTime(2026, 1, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6648),
                             Description = "Durable motorcycle with excellent fuel efficiency",
                             ImageUrl = "/images/wave-alpha.jpg",
                             IsActive = true,
@@ -737,7 +791,7 @@ namespace MotorcycleShop.Migrations
                             ProductId = 2,
                             BrandId = 2,
                             BrandName = "Yamaha",
-                            CreatedDate = new DateTime(2026, 1, 10, 10, 30, 36, 172, DateTimeKind.Local).AddTicks(3831),
+                            CreatedDate = new DateTime(2026, 1, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6663),
                             Description = "Powerful and sporty manual clutch motorcycle",
                             ImageUrl = "/images/exciter-155.jpg",
                             IsActive = true,
@@ -751,7 +805,7 @@ namespace MotorcycleShop.Migrations
                             ProductId = 3,
                             BrandId = 3,
                             BrandName = "GS",
-                            CreatedDate = new DateTime(2026, 1, 10, 10, 30, 36, 172, DateTimeKind.Local).AddTicks(3833),
+                            CreatedDate = new DateTime(2026, 1, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6665),
                             Description = "High-quality motorcycle battery",
                             ImageUrl = "/images/acquy-gs.jpg",
                             IsActive = true,
@@ -783,6 +837,9 @@ namespace MotorcycleShop.Migrations
                     b.Property<int?>("DiscountId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -801,7 +858,32 @@ namespace MotorcycleShop.Migrations
 
                     b.HasIndex("DiscountId");
 
-                    b.ToTable("Promotion");
+                    b.ToTable("Promotions");
+
+                    b.HasData(
+                        new
+                        {
+                            PromotionId = 1,
+                            Condition = "First Order Discount",
+                            Description = "Get 20% off on your first purchase",
+                            DiscountId = 1,
+                            DisplayOrder = 1,
+                            EndDate = new DateTime(2026, 7, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6744),
+                            ImagePath = "/images/promotions/first-order.jpg",
+                            IsActive = true,
+                            StartDate = new DateTime(2026, 1, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6744)
+                        },
+                        new
+                        {
+                            PromotionId = 2,
+                            Condition = "Free Shipping Over 2M",
+                            Description = "Free shipping for orders over 2,000,000 VND",
+                            DisplayOrder = 2,
+                            EndDate = new DateTime(2026, 4, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6747),
+                            ImagePath = "/images/promotions/free-shipping.jpg",
+                            IsActive = true,
+                            StartDate = new DateTime(2026, 1, 12, 15, 54, 42, 305, DateTimeKind.Local).AddTicks(6747)
+                        });
                 });
 
             modelBuilder.Entity("MotorcycleShop.Models.SparePart", b =>
@@ -925,6 +1007,17 @@ namespace MotorcycleShop.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MotorcycleShop.Models.Admin.AdminLog", b =>
+                {
+                    b.HasOne("MotorcycleShop.Models.ApplicationUser", "Admin")
+                        .WithMany()
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Admin");
                 });
 
             modelBuilder.Entity("MotorcycleShop.Models.Cart", b =>
@@ -1052,7 +1145,8 @@ namespace MotorcycleShop.Migrations
                 {
                     b.HasOne("MotorcycleShop.Models.Discount", "Discount")
                         .WithMany("Promotions")
-                        .HasForeignKey("DiscountId");
+                        .HasForeignKey("DiscountId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Discount");
                 });

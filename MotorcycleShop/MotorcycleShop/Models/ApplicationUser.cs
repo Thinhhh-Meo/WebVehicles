@@ -18,6 +18,8 @@ namespace MotorcycleShop.Models
         [StringLength(200, ErrorMessage = "Address cannot exceed 200 characters")]
         public string Address { get; set; }
 
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
         public string? AvatarUrl { get; set; }
 
         public string? Note { get; set; }

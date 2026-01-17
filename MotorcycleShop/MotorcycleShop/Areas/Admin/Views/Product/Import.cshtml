@@ -1,0 +1,538 @@
+﻿@using MotorcycleShop.Models
+@{
+    ViewData["Title"] = "Import Products";
+    ViewData["Controller"] = "Product";
+    ViewData["Action"] = "Import";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h1 class="h3 mb-0"><i class="fas fa-file-import me-2"></i>@ViewData["Title"]</h1>
+        </div>
+    </div>
+
+    <!-- Import Steps -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-list-ol me-2"></i>Import Steps</h5>
+                    <div class="steps">
+                        <div class="step active">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h6>Download Template</h6>
+                                <p>Get the Excel template with correct format</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h6>Fill Data</h6>
+                                <p>Enter your product data in the template</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h6>Upload File</h6>
+                                <p>Upload the completed Excel file</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h6>Review & Import</h6>
+                                <p>Check data and confirm import</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Options -->
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Option 1: Excel Import -->
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-file-excel me-2"></i>Excel Import</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Import products from Excel file. Recommended for bulk operations.</p>
+
+                    <div class="mb-4">
+                        <a href="@Url.Action("DownloadTemplate", "Product")" class="btn btn-outline-primary">
+                            <i class="fas fa-download me-2"></i>Download Template
+                        </a>
+                        <small class="d-block mt-2 text-muted">Download the Excel template with correct format</small>
+                    </div>
+
+                    <form id="excelImportForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">Select Excel File</label>
+                            <input type="file" class="form-control" id="excelFile" name="excelFile" accept=".xlsx,.xls">
+                            <div class="form-text">Only .xlsx and .xls files are supported</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Import Action</label>
+                            <select class="form-select" id="importAction" name="importAction">
+                                <option value="add">Add New Products Only</option>
+                                <option value="update">Update Existing Products</option>
+                                <option value="add_update">Add & Update Products</option>
+                            </select>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="skipInvalid" name="skipInvalid" checked>
+                            <label class="form-check-label" for="skipInvalid">
+                                Skip invalid rows and continue
+                            </label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" id="uploadExcelBtn">
+                                <i class="fas fa-upload me-2"></i>Upload & Preview
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- Option 2: CSV Import -->
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-file-csv me-2"></i>CSV Import</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Import products from CSV file. Simple format with comma separated values.</p>
+
+                    <div class="mb-4">
+                        <a href="@Url.Action("DownloadCSVTemplate", "Product")" class="btn btn-outline-success">
+                            <i class="fas fa-download me-2"></i>Download CSV Template
+                        </a>
+                        <small class="d-block mt-2 text-muted">Download the CSV template</small>
+                    </div>
+
+                    <form id="csvImportForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">Select CSV File</label>
+                            <input type="file" class="form-control" id="csvFile" name="csvFile" accept=".csv">
+                            <div class="form-text">Only .csv files are supported</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">CSV Delimiter</label>
+                            <select class="form-select" id="delimiter" name="delimiter">
+                                <option value="," selected>Comma (,)</option>
+                                <option value=";">Semicolon (;)</option>
+                                <option value="\t">Tab</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success" id="uploadCSVBtn">
+                                <i class="fas fa-upload me-2"></i>Upload CSV File
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Section (Initially Hidden) -->
+    <div class="row mt-4 d-none" id="previewSection">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-eye me-2"></i>Import Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Previewing <span id="previewCount">0</span> products. Please review before importing.
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="previewTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Brand</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="previewTableBody">
+                                <!-- Preview data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div class="import-summary">
+                            <span class="badge bg-success me-2"><span id="newCount">0</span> New</span>
+                            <span class="badge bg-warning me-2"><span id="updateCount">0</span> Update</span>
+                            <span class="badge bg-danger me-2"><span id="errorCount">0</span> Errors</span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-outline-secondary me-2" id="cancelImportBtn">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </button>
+                            <button type="button" class="btn btn-primary" id="confirmImportBtn" disabled>
+                                <i class="fas fa-check me-2"></i>Confirm Import
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Imports -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-history me-2"></i>Recent Imports</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Filename</th>
+                                    <th>Type</th>
+                                    <th>Records</th>
+                                    <th>Success</th>
+                                    <th>Failed</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @* This would be populated from server *@
+                                <tr>
+                                    <td colspan="8" class="text-center py-4">
+                                        <i class="fas fa-info-circle me-2"></i>No import history yet
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 20px 0;
+        }
+
+            .steps::before {
+                content: '';
+                position: absolute;
+                top: 20px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: #e9ecef;
+                z-index: 1;
+            }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+            .step.active .step-number {
+                background: var(--primary-color);
+                color: white;
+                border-color: var(--primary-color);
+            }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 10px;
+            transition: all 0.3s;
+        }
+
+        .step-content h6 {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin: 0;
+        }
+
+        .import-summary .badge {
+            font-size: 0.9rem;
+            padding: 8px 12px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Handle Excel form submission
+            $('#excelImportForm').submit(function(e) {
+                e.preventDefault();
+                uploadExcelFile();
+            });
+
+            // Handle CSV form submission
+            $('#csvImportForm').submit(function(e) {
+                e.preventDefault();
+                uploadCSVFile();
+            });
+
+            // Cancel import button
+            $('#cancelImportBtn').click(function() {
+                Swal.fire({
+                    title: 'Cancel Import?',
+                    text: 'Are you sure you want to cancel? All preview data will be lost.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, Cancel',
+                    cancelButtonText: 'Continue'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        resetImportForm();
+                    }
+                });
+            });
+
+            // Confirm import button
+            $('#confirmImportBtn').click(function() {
+                confirmImport();
+            });
+        });
+
+        function uploadExcelFile() {
+            const fileInput = $('#excelFile')[0];
+            if (!fileInput.files.length) {
+                Swal.fire('Error', 'Please select an Excel file to upload', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('action', $('#importAction').val());
+            formData.append('skipInvalid', $('#skipInvalid').is(':checked'));
+
+            showLoading('Uploading and parsing Excel file...');
+
+            $.ajax({
+                url: '@Url.Action("PreviewExcelImport", "Product")',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        showPreview(response.data);
+                    } else {
+                        Swal.fire('Error', response.message || 'Failed to process Excel file', 'error');
+                    }
+                },
+                error: function() {
+                    Swal.fire('Error', 'Failed to upload file. Please try again.', 'error');
+                }
+            });
+        }
+
+        function uploadCSVFile() {
+            const fileInput = $('#csvFile')[0];
+            if (!fileInput.files.length) {
+                Swal.fire('Error', 'Please select a CSV file to upload', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('delimiter', $('#delimiter').val());
+
+            showLoading('Uploading and parsing CSV file...');
+
+            $.ajax({
+                url: '@Url.Action("PreviewCSVImport", "Product")',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        showPreview(response.data);
+                    } else {
+                        Swal.fire('Error', response.message || 'Failed to process CSV file', 'error');
+                    }
+                },
+                error: function() {
+                    Swal.fire('Error', 'Failed to upload file. Please try again.', 'error');
+                }
+            });
+        }
+
+        function showPreview(data) {
+            // Update step indicators
+            $('.step').removeClass('active');
+            $('.step').eq(3).addClass('active'); // Review step
+
+            // Update counts
+            $('#previewCount').text(data.products.length);
+            $('#newCount').text(data.summary.new || 0);
+            $('#updateCount').text(data.summary.update || 0);
+            $('#errorCount').text(data.summary.errors || 0);
+
+            // Build preview table
+            const tableBody = $('#previewTableBody');
+            tableBody.empty();
+
+            data.products.forEach((product, index) => {
+                let statusBadge = '';
+                let actionBadge = '';
+
+                switch (product.status) {
+                    case 'new':
+                        statusBadge = '<span class="badge bg-success">New</span>';
+                        actionBadge = 'Will be created';
+                        break;
+                    case 'update':
+                        statusBadge = '<span class="badge bg-warning">Update</span>';
+                        actionBadge = 'Will be updated';
+                        break;
+                    case 'error':
+                        statusBadge = '<span class="badge bg-danger">Error</span>';
+                        actionBadge = `<span class="text-danger">${product.error || 'Invalid data'}</span>`;
+                        break;
+                }
+
+                tableBody.append(`
+                    <tr class="${product.status === 'error' ? 'table-danger' : ''}">
+                        <td>${index + 1}</td>
+                        <td>${product.name || 'N/A'}</td>
+                        <td>${product.type || 'N/A'}</td>
+                        <td>${product.brand || 'N/A'}</td>
+                        <td>${product.price ? product.price.toLocaleString() + 'đ' : 'N/A'}</td>
+                        <td>${product.quantity || 0}</td>
+                        <td>${statusBadge}</td>
+                        <td>${actionBadge}</td>
+                    </tr>
+                `);
+            });
+
+            // Enable/disable confirm button based on errors
+            if (data.summary.errors > 0) {
+                $('#confirmImportBtn').prop('disabled', false)
+                    .text('Import Valid Records Only');
+            } else {
+                $('#confirmImportBtn').prop('disabled', false)
+                    .text('Confirm Import');
+            }
+
+            // Show preview section
+            $('#previewSection').removeClass('d-none');
+            $('html, body').animate({
+                scrollTop: $('#previewSection').offset().top - 100
+            }, 500);
+        }
+
+        function confirmImport() {
+            Swal.fire({
+                title: 'Confirm Import',
+                text: 'Are you sure you want to import these products? This action cannot be undone.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Import Now',
+                cancelButtonText: 'Cancel',
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return $.ajax({
+                        url: '@Url.Action("ExecuteImport", "Product")',
+                        type: 'POST',
+                        data: {
+                            // In real implementation, you would send the data
+                        }
+                    }).then(response => {
+                        if (!response.success) {
+                            throw new Error(response.message || 'Import failed');
+                        }
+                        return response;
+                    });
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Import Successful!',
+                        text: 'Products have been imported successfully.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        resetImportForm();
+                        // You might want to refresh the page or update data
+                    });
+                }
+            });
+        }
+
+        function resetImportForm() {
+            // Reset forms
+            $('#excelImportForm')[0].reset();
+            $('#csvImportForm')[0].reset();
+
+            // Hide preview
+            $('#previewSection').addClass('d-none');
+
+            // Reset steps
+            $('.step').removeClass('active');
+            $('.step').eq(0).addClass('active');
+
+            // Clear preview table
+            $('#previewTableBody').empty();
+        }
+
+        function showLoading(message) {
+            Swal.fire({
+                title: 'Processing...',
+                text: message,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+    </script>
+}

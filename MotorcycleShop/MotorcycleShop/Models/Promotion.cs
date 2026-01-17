@@ -24,6 +24,8 @@ namespace MotorcycleShop.Models
         public bool IsActive { get; set; } = true;
 
         public int? DiscountId { get; set; }
+        [Range(0, 100)]
+        public int DisplayOrder { get; set; } = 0;
 
         // Navigation property
         public Discount? Discount { get; set; }

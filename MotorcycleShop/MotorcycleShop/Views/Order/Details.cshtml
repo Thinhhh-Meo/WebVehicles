@@ -6,50 +6,55 @@
 }
 
 <div class="container mt-5">
-    <h2 class="text-white mb-4">
-        <i class="fas fa-receipt text-danger"></i> Order Details
-    </h2>
-
     <div class="dark-card mb-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-white">Order #@Model.OrderId</h4>
-            <span class="badge @GetStatusBadgeClass(Model.Status)">
+            <h4 class="text-white mb-0">Order #@Model.OrderId</h4>
+
+            <!-- STATUS BADGE -->
+            <span class="status-badge @GetStatusBadgeClass(Model.Status)">
                 @Model.Status
             </span>
         </div>
 
-        <!-- Order Info -->
+        <!-- ORDER INFO -->
         <div class="order-info-box mb-4">
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-2">
                         <i class="fas fa-calendar-alt text-danger me-2"></i>
-                        <strong>Order Date:</strong> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")
+                        <strong>Order Date:</strong>
+                        <span>@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
                     </div>
                     <div class="mb-2">
                         <i class="fas fa-user text-danger me-2"></i>
-                        <strong>Customer:</strong> @(Model.User?.UserName ?? "N/A")
+                        <strong>Customer:</strong>
+                        <span>@(Model.User?.UserName ?? "N/A")</span>
                     </div>
                     <div class="mb-2">
                         <i class="fas fa-phone text-danger me-2"></i>
-                        <strong>Phone:</strong> @Model.PhoneNumber
+                        <strong>Phone:</strong>
+                        <span>@Model.PhoneNumber</span>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="mb-2">
                         <i class="fas fa-credit-card text-danger me-2"></i>
-                        <strong>Payment:</strong> @Model.PaymentMethod
+                        <strong>Payment:</strong>
+                        <span class="payment-badge">@Model.PaymentMethod</span>
                     </div>
                     <div class="mb-2">
                         <i class="fas fa-map-marker-alt text-danger me-2"></i>
-                        <strong>Address:</strong> @Model.ShippingAddress
+                        <strong>Address:</strong>
+                        <span>@Model.ShippingAddress</span>
                     </div>
+
                     @if (!string.IsNullOrEmpty(Model.Discount?.Code))
                     {
                         <div class="mb-2">
                             <i class="fas fa-tag text-danger me-2"></i>
                             <strong>Discount Code:</strong>
-                            <span class="badge bg-success">@Model.Discount.Code</span>
+                            <span class="status-badge status-delivered">@Model.Discount.Code</span>
                         </div>
                     }
                 </div>
@@ -65,14 +70,14 @@
             }
         </div>
 
-        <!-- Order Items -->
-        <div class="table-responsive mb-4">
+        <!-- ORDER ITEMS -->
+        <div class="table-responsive">
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
                         <th>Product</th>
                         <th class="text-end">Price</th>
-                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Qty</th>
                         <th class="text-end">Total</th>
                     </tr>
                 </thead>
@@ -85,7 +90,6 @@
                                 @if (!string.IsNullOrEmpty(item.Product.BrandName))
                                 {
                                     <br />
-                            
                                     <small class="text-muted">Brand: @item.Product.BrandName</small>
                                 }
                             </td>
@@ -95,34 +99,35 @@
                         </tr>
                     }
                 </tbody>
+
+                <tfoot>
+                    <tr class="border-top">
+                        <td colspan="3" class="text-end"><strong>Subtotal:</strong></td>
+                        <td class="text-end"><strong>@Model.TotalPrice.ToString("N0") đ</strong></td>
+                    </tr>
+
+                    @if (Model.DiscountAmount > 0)
+                    {
+                        <tr class="text-success">
+                            <td colspan="3" class="text-end">
+                                <strong>Discount (@Model.Discount?.Code):</strong>
+                            </td>
+                            <td class="text-end">
+                                <strong>-@Model.DiscountAmount.ToString("N0") đ</strong>
+                            </td>
+                        </tr>
+                    }
+
+                    <tr class="table-active border-top">
+                        <td colspan="3" class="text-end">
+                            <strong class="fs-5 text-danger">Final Total:</strong>
+                        </td>
+                        <td class="text-end">
+                            <strong class="fs-5 text-danger">@Model.FinalPrice.ToString("N0") đ</strong>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
-        </div>
-
-        <!-- Price Summary Card -->
-        <div class="dark-card p-3">
-            <h5 class="mb-3">
-                <i class="fas fa-credit-card text-danger"></i> Price Summary
-            </h5>
-
-            <div class="d-flex justify-content-between mb-2">
-                <span>Subtotal:</span>
-                <span>@Model.TotalPrice.ToString("N0") đ</span>
-            </div>
-
-            @if (Model.DiscountAmount > 0)
-            {
-                <div class="d-flex justify-content-between mb-2 text-success">
-                    <span>Discount (@Model.Discount?.Code):</span>
-                    <span>-@Model.DiscountAmount.ToString("N0") đ</span>
-                </div>
-            }
-
-            <hr class="my-3" />
-
-            <div class="d-flex justify-content-between fw-bold fs-5 text-danger">
-                <span>Final Amount</span>
-                <span>@Model.FinalPrice.ToString("N0") đ</span>
-            </div>
         </div>
     </div>
 
@@ -131,71 +136,77 @@
     </a>
 </div>
 
+<!-- ================= CSS ================= -->
 <style>
     .dark-card {
         background: #151515;
         border-radius: 18px;
         padding: 24px;
         color: #fff;
-        box-shadow: 0 0 0 1px rgba(255,255,255,.05);
-        margin-bottom: 20px;
     }
 
     .order-info-box {
         background: #1e1e1e;
         border-radius: 14px;
         padding: 18px 22px;
-        color: #f1f1f1;
-        font-size: 15px;
         box-shadow: 0 0 0 1px rgba(255,255,255,.08);
     }
 
-    .table-dark {
-        background: #151515;
-        border-radius: 10px;
-        overflow: hidden;
+    .payment-badge {
+        background: rgba(220,53,69,.15);
+        color: #dc3545;
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-weight: 600;
     }
 
-        .table-dark thead th {
-            background: #dc3545;
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 15px;
-        }
-
-        .table-dark tbody td {
-            border-color: rgba(255,255,255,.1);
-            padding: 12px 15px;
-            vertical-align: middle;
-        }
-
-        .table-dark tbody tr:hover {
-            background: rgba(255,255,255,.05);
-        }
-
-    .text-success {
-        color: #28a745 !important;
+    /* ===== STATUS BADGE (FIX LỖI PENDING) ===== */
+    .status-badge {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-block;
     }
 
-    .text-danger {
-        color: #dc3545 !important;
+    .status-pending {
+        background: #fff3cd;
+        color: #856404;
     }
 
-    .badge.bg-success {
-        background-color: #28a745;
+    .status-confirmed {
+        background: #cff4fc;
+        color: #055160;
     }
 
+    .status-shipping {
+        background: #cfe2ff;
+        color: #084298;
+    }
+
+    .status-delivered {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+
+    .status-cancelled {
+        background: #f8d7da;
+        color: #842029;
+    }
+
+    .table-active {
+        background: rgba(220, 53, 69, 0.1) !important;
+    }
 </style>
 
 @functions {
-    string GetStatusBadgeClass(MotorcycleShop.Models.OrderStatus s) => s switch
+    string GetStatusBadgeClass(OrderStatus s) => s switch
     {
-        MotorcycleShop.Models.OrderStatus.Pending => "bg-warning text-dark",
-        MotorcycleShop.Models.OrderStatus.Confirmed => "bg-info",
-        MotorcycleShop.Models.OrderStatus.Shipping => "bg-primary",
-        MotorcycleShop.Models.OrderStatus.Delivered => "bg-success",
-        MotorcycleShop.Models.OrderStatus.Cancelled => "bg-danger",
-        _ => "bg-secondary"
+        OrderStatus.Pending => "status-pending",
+        OrderStatus.Confirmed => "status-confirmed",
+        OrderStatus.Shipping => "status-shipping",
+        OrderStatus.Delivered => "status-delivered",
+        OrderStatus.Cancelled => "status-cancelled",
+        _ => "status-pending"
     };
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MotorcycleShop.Models;
+using MotorcycleShop.Models.Admin;
 
 namespace MotorcycleShop.Data
 {
@@ -21,6 +22,17 @@ namespace MotorcycleShop.Data
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Cart> Carts { get; set; }
+
+        public DbSet<Coupon> Coupons { get; set; }
+
+        public DbSet<Promotion> Promotions { get; set; }
+        public DbSet<AdminLog> AdminLogs { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }
+
+       
+        public DbSet<Report> Reports { get; set; }
+
 
         public DbSet<UserDiscount> UserDiscounts { get; set; }
 
@@ -105,6 +117,20 @@ namespace MotorcycleShop.Data
             modelBuilder.Entity<UserDiscount>()
                 .HasIndex(ud => new { ud.UserId, ud.DiscountId })
                 .IsUnique();
+
+            // Promotion configuration
+            modelBuilder.Entity<Promotion>()
+              .HasOne(p => p.Discount)
+              .WithMany(d => d.Promotions)
+              .HasForeignKey(p => p.DiscountId)
+              .OnDelete(DeleteBehavior.SetNull);
+
+            // AdminLog configuration
+            modelBuilder.Entity<AdminLog>()
+                .HasOne(l => l.Admin)
+                .WithMany()
+                .HasForeignKey(l => l.AdminId)
+                .OnDelete(DeleteBehavior.Restrict);
             // Seed initial data
             SeedData(modelBuilder);
         }
@@ -237,6 +263,33 @@ namespace MotorcycleShop.Data
                     UsageLimit = 100
                 }
             );
+
+            // Seed promotion data
+          modelBuilder.Entity<Promotion>().HasData(
+          new Promotion
+            {
+                PromotionId = 1,
+                Condition = "First Order Discount",
+                Description = "Get 20% off on your first purchase",
+                ImagePath = "/images/promotions/first-order.jpg",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddMonths(6),
+                IsActive = true,
+                DiscountId = 1,
+                DisplayOrder = 1
+            },
+            new Promotion
+            {
+                PromotionId = 2,
+                Condition = "Free Shipping Over 2M",
+                Description = "Free shipping for orders over 2,000,000 VND",
+                ImagePath = "/images/promotions/free-shipping.jpg",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddMonths(3),
+                IsActive = true,
+                DisplayOrder = 2
+            }
+        );
         }
     }
 }

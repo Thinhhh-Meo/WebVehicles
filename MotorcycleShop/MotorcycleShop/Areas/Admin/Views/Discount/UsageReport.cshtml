@@ -1,0 +1,468 @@
+﻿@using MotorcycleShop.Models
+@{
+    ViewData["Title"] = "Discount Usage Report";
+    ViewData["Controller"] = "Discount";
+    ViewData["Action"] = "UsageReport";
+
+    var modelData = Model as dynamic;
+    var discount = modelData.Discount as Discount;
+    var usageData = modelData.UsageData as List<UserDiscount>;
+    var totalUses = (int)modelData.TotalUses;
+    var uniqueUsers = (int)modelData.UniqueUsers;
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="h3 mb-0"><i class="fas fa-chart-bar me-2"></i>@ViewData["Title"]</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-action="Index">Discounts</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@discount.DiscountId">@discount.DiscountName</a></li>
+                    <li class="breadcrumb-item active">Usage Report</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Details" asp-route-id="@discount.DiscountId" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-arrow-left me-2"></i>Back to Details
+            </a>
+            <button type="button" class="btn btn-success" id="exportBtn">
+                <i class="fas fa-file-excel me-2"></i>Export Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Summary Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card stat-card stat-orders">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Total Uses</h6>
+                            <h2 class="mt-2 mb-0">@totalUses</h2>
+                            <p class="mb-0">All time</p>
+                        </div>
+                        <i class="fas fa-chart-line fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card stat-users">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Unique Users</h6>
+                            <h2 class="mt-2 mb-0">@uniqueUsers</h2>
+                            <p class="mb-0">Distinct users</p>
+                        </div>
+                        <i class="fas fa-users fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card stat-revenue">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Usage Rate</h6>
+                            <h2 class="mt-2 mb-0">
+                                @if (discount.UsageLimit.HasValue && discount.UsageLimit.Value > 0)
+                                {
+                                    <span>@((discount.UsedCount * 100 / discount.UsageLimit.Value).ToString("0"))%</span>
+                                }
+                                else
+                                {
+                                    <span>∞</span>
+                                }
+                            </h2>
+                            <p class="mb-0">Of limit</p>
+                        </div>
+                        <i class="fas fa-percentage fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card stat-products">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-0">Remaining</h6>
+                            <h2 class="mt-2 mb-0">
+                                @if (discount.UsageLimit.HasValue)
+                                {
+                                    <span>@(discount.UsageLimit.Value - discount.UsedCount)</span>
+                                }
+                                else
+                                {
+                                    <span>∞</span>
+                                }
+                            </h2>
+                            <p class="mb-0">Uses left</p>
+                        </div>
+                        <i class="fas fa-battery-full fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Data Table -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="fas fa-table me-2"></i>Usage History</h5>
+        </div>
+        <div class="card-body">
+            @if (usageData.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover data-table" id="usageTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Used Date</th>
+                                <th>Discount Code</th>
+                                <th>Discount Value</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int counter = 1;
+                            }
+                            @foreach (var usage in usageData)
+                            {
+                                <tr>
+                                    <td>@(counter++)</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-circle me-2">
+                                                @if (!string.IsNullOrEmpty(usage.User?.AvatarUrl))
+                                                {
+                                                    <img src="@usage.User.AvatarUrl" alt="@usage.User.FullName" class="avatar-img">
+                                                }
+                                                else
+                                                {
+                                                    <span class="avatar-text">@(usage.User?.FullName?[0] ?? 'U')</span>
+                                                }
+                                            </div>
+                                            <div>
+                                                <div class="fw-bold">@usage.User?.FullName</div>
+                                                <small class="text-muted">ID: @usage.UserId</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>@usage.User?.Email</td>
+                                    <td>@usage.UsedDate.ToString("MMM dd, yyyy HH:mm")</td>
+                                    <td>
+                                        <span class="badge bg-primary">@discount.Code</span>
+                                    </td>
+                                    <td>
+                                        @if (discount.DiscountType == DiscountType.Percentage)
+                                        {
+                                            <span class="badge bg-success">@discount.DiscountValue%</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success">@discount.DiscountValue.ToString("N0")đ</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="@Url.Action("Details", "User", new { id = usage.UserId })"
+                                               class="btn btn-outline-info" title="View User">
+                                                <i class="fas fa-user"></i>
+                                            </a>
+                                            <!-- Check if user has any orders with this discount -->
+                                            @{
+                                                var userOrders = discount.Orders?.Where(o => o.UserId == usage.UserId).ToList();
+                                            }
+                                            @if (userOrders != null && userOrders.Any())
+                                            {
+                                                <div class="dropdown">
+                                                    <button class="btn btn-outline-primary dropdown-toggle" type="button"
+                                                            data-bs-toggle="dropdown" title="View Orders">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        <span class="badge bg-danger ms-1">@userOrders.Count</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        @foreach (var order in userOrders.Take(5))
+                                                        {
+                                                            <li>
+                                                                <a class="dropdown-item" href="@Url.Action("Details", "Order", new { id = order.OrderId })">
+                                                                    Order #@order.OrderId - @order.OrderDate.ToString("MMM dd")
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                        @if (userOrders.Count > 5)
+                                                        {
+                                                            <li><hr class="dropdown-divider"></li>
+                                                            <li><a class="dropdown-item" href="@Url.Action("Index", "Order", new { userId = usage.UserId })">View all orders</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-chart-bar fa-4x text-muted mb-3"></i>
+                    <h4>No Usage Data</h4>
+                    <p class="text-muted">This discount hasn't been used yet.</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    @if (usageData.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Usage Over Time</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="usageChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Top Users</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="usersChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Styles {
+    <style>
+        .avatar-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-text {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .dropdown-toggle .badge {
+            font-size: 0.6rem;
+            padding: 2px 4px;
+            position: relative;
+            top: -2px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            $('#usageTable').DataTable({
+                "pageLength": 25,
+                "order": [[3, 'desc']], // Sort by Used Date descending
+                "language": {
+                    "search": "Search usage records:"
+                }
+            });
+
+            // Export button
+            $('#exportBtn').click(function() {
+                Swal.fire({
+                    title: 'Export Report',
+                    text: 'Export usage report to Excel?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Export',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // In real app, this would call an export endpoint
+                        Swal.fire({
+                            title: 'Exporting...',
+                            text: 'Generating Excel file',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        setTimeout(() => {
+                            Swal.close();
+                            Swal.fire({
+                                title: 'Export Complete',
+                                text: 'Report exported successfully!',
+                                icon: 'success'
+                            });
+                        }, 1500);
+                    }
+                });
+            });
+
+            // Initialize charts if there's data
+            @if (usageData.Any())
+            {
+                    <text>
+                    initCharts();
+                    </text>
+            }
+
+            // Initialize tooltips
+            $('[title]').tooltip();
+        });
+
+        function initCharts() {
+            // Usage Over Time Chart
+            const usageCtx = document.getElementById('usageChart').getContext('2d');
+
+            // Group usage by date (day)
+            const usageByDate = {};
+            @foreach (var usage in usageData)
+            {
+                    <text>
+                    const date = '@usage.UsedDate.ToString("MMM dd")';
+                    usageByDate[date] = (usageByDate[date] || 0) + 1;
+                    </text>
+            }
+
+            // Convert to arrays and sort by date
+            const dates = Object.keys(usageByDate).sort((a, b) => {
+                return new Date(a + ' ' + new Date().getFullYear()) - new Date(b + ' ' + new Date().getFullYear());
+            });
+
+            const counts = dates.map(date => usageByDate[date]);
+
+            new Chart(usageCtx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Daily Usage',
+                        data: counts,
+                        backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                        borderColor: 'rgba(67, 97, 238, 1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Top Users Chart
+            const usersCtx = document.getElementById('usersChart').getContext('2d');
+
+            // Group usage by user
+            const usageByUser = {};
+            @foreach (var usage in usageData)
+            {
+                    <text>
+                    const userName = '@usage.User?.FullName' || 'Unknown User';
+                    usageByUser[userName] = (usageByUser[userName] || 0) + 1;
+                    </text>
+            }
+
+            // Get top 5 users
+            const topUsers = Object.entries(usageByUser)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+            const userNames = topUsers.map(u => u[0]);
+            const userCounts = topUsers.map(u => u[1]);
+
+            // Calculate percentage for labels
+            const totalUsage = userCounts.reduce((a, b) => a + b, 0);
+            const percentages = userCounts.map(count => ((count / totalUsage) * 100).toFixed(1) + '%');
+
+            new Chart(usersCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: userNames.map((name, index) => `${name} (${userCounts[index]})`),
+                    datasets: [{
+                        data: userCounts,
+                        backgroundColor: [
+                            'rgba(67, 97, 238, 0.7)',
+                            'rgba(76, 201, 240, 0.7)',
+                            'rgba(247, 37, 133, 0.7)',
+                            'rgba(248, 150, 30, 0.7)',
+                            'rgba(75, 192, 192, 0.7)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const percentage = ((value / totalUsage) * 100).toFixed(1);
+                                    return `${label}: ${value} uses (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}

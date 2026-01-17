@@ -1,0 +1,277 @@
+﻿@model PaginatedList<Brand>
+@{
+    ViewData["Title"] = "Brand Management";
+    ViewData["Controller"] = "Brand";
+    ViewData["Action"] = "Index";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-0">Brand Management</h1>
+        <p class="text-muted mb-0">Manage all motorcycle brands</p>
+    </div>
+    <div>
+        <a asp-area="Admin" asp-controller="Brand" asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Add New Brand
+        </a>
+    </div>
+</div>
+
+<!-- Filters -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-8">
+                <input type="text" name="search" class="form-control" placeholder="Search brands by name, country or description..."
+                       value="@ViewBag.Search">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-search me-2"></i>Search
+                </button>
+            </div>
+            <div class="col-md-2">
+                <a asp-area="Admin" asp-controller="Brand" asp-action="Index" class="btn btn-outline-secondary w-100">
+                    <i class="fas fa-undo me-2"></i>Reset
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Brands Table -->
+<div class="card">
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Logo</th>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>Established</th>
+                            <th>Products</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var brand in Model)
+                        {
+                            <tr>
+                                <td>@brand.BrandId</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(brand.LogoUrl))
+                                    {
+                                        <img src="@brand.LogoUrl" alt="@brand.Name"
+                                             style="width: 50px; height: 50px; object-fit: contain; border-radius: 5px; background: #f8f9fa; padding: 5px;">
+                                    }
+                                    else
+                                    {
+                                        <div style="width: 50px; height: 50px; background: #f8f9fa; border-radius: 5px;
+                                                                display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-tag text-muted"></i>
+                                        </div>
+                                    }
+                                </td>
+                                <td>
+                                    <strong>@brand.Name</strong>
+                                    @if (!string.IsNullOrEmpty(brand.Description))
+                                    {
+                                        <div class="text-muted small mt-1">
+                                            @(brand.Description.Length > 60 ? brand.Description.Substring(0, 60) + "..." : brand.Description)
+                                        </div>
+                                    }
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-flag me-1"></i>@brand.Country
+                                    </span>
+                                </td>
+                                <td>
+                                    @brand.EstablishedYear.ToString("yyyy")
+                                    <div class="text-muted small">@((DateTime.Now.Year - brand.EstablishedYear.Year)) years</div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-primary">
+                                        @(brand.Products?.Count ?? 0) products
+                                    </span>
+                                </td>
+                                <td>
+                                    <label class="switch">
+                                        <input type="checkbox" @(brand.IsActive ? "checked" : "")
+                                               onchange="toggleBrandStatus(@brand.BrandId, this.checked)">
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+                                           asp-route-brand="@brand.Name" class="btn btn-outline-info" title="View Products">
+                                            <i class="fas fa-box"></i>
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="Brand" asp-action="Edit"
+                                           asp-route-id="@brand.BrandId" class="btn btn-outline-success" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-outline-danger"
+                                                onclick="confirmDelete(@brand.BrandId, '@brand.Name')" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex - 1, search = ViewBag.Search })">
+                                <i class="fas fa-chevron-left me-1"></i>Previous
+                            </a>
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i, search = ViewBag.Search })">
+                                @i
+                            </a>
+                        </li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex + 1, search = ViewBag.Search })">
+                                Next<i class="fas fa-chevron-right ms-1"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="fas fa-tags fa-3x text-muted"></i>
+                </div>
+                <h4 class="text-muted">No brands found</h4>
+                <p class="text-muted mb-4">Get started by adding your first brand</p>
+                <a asp-area="Admin" asp-controller="Brand" asp-action="Create" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Add New Brand
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Delete Form (hidden) -->
+<form id="deleteForm" method="post" asp-action="Delete">
+    <input type="hidden" name="id" id="deleteBrandId" />
+</form>
+
+@section Scripts {
+    <script>
+        // Toggle brand status
+        function toggleBrandStatus(id, isActive) {
+            $.ajax({
+                url: '@Url.Action("ToggleStatus", "Brand")',
+                type: 'POST',
+                data: { id: id },
+                success: function(response) {
+                    if (response.success) {
+                        showToast('Brand status updated successfully!', 'success');
+                    } else {
+                        showToast('Failed to update status', 'error');
+                        // Revert checkbox
+                        event.target.checked = !isActive;
+                    }
+                },
+                error: function() {
+                    showToast('An error occurred', 'error');
+                    // Revert checkbox
+                    event.target.checked = !isActive;
+                }
+            });
+        }
+
+        // Confirm brand deletion
+        function confirmDelete(id, name) {
+            Swal.fire({
+                title: 'Delete Brand?',
+                html: `<p>Are you sure you want to delete <strong>${name}</strong>?</p>
+                       <p class="text-danger"><i class="fas fa-exclamation-triangle me-1"></i>
+                       This action cannot be undone!</p>`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#deleteBrandId').val(id);
+                    $('#deleteForm').submit();
+                }
+            });
+        }
+
+        // Show toast notification
+        function showToast(message, type) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            Toast.fire({
+                icon: type,
+                title: message
+            });
+        }
+
+        // Initialize DataTables
+        $(document).ready(function() {
+            $('.data-table').DataTable({
+                "pageLength": 25,
+                "order": [[2, "asc"]], // Sort by name
+                "language": {
+                    "search": "Search within brands:",
+                    "lengthMenu": "Show _MENU_ entries",
+                    "zeroRecords": "No matching brands found",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ brands",
+                    "infoEmpty": "No brands available",
+                    "infoFiltered": "(filtered from _MAX_ total brands)",
+                    "paginate": {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Previous"
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+}

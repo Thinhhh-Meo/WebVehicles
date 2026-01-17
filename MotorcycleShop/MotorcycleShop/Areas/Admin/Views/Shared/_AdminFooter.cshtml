@@ -1,0 +1,249 @@
+﻿<!-- Footer -->
+<footer class="admin-footer mt-auto py-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="footer-left">
+                    <p class="mb-0">
+                        <i class="fas fa-copyright me-1"></i>
+                        @DateTime.Now.Year Motorcycle Shop. All rights reserved.
+                    </p>
+                    <small class="text-muted">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        Secure Admin Panel v1.0
+                    </small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="footer-right text-end">
+                    <div class="system-info">
+                        <span class="me-3">
+                            <i class="fas fa-server me-1"></i>
+                            <span id="currentTime">@DateTime.Now.ToString("HH:mm:ss")</span>
+                        </span>
+                        <span class="me-3">
+                            <i class="fas fa-database me-1"></i>
+                            <span id="dbStatus">Connected</span>
+                        </span>
+                        <span>
+                            <i class="fas fa-user-shield me-1"></i>
+                            <span id="sessionTime">Session: 0m</span>
+                        </span>
+                    </div>
+                    <div class="footer-links mt-2">
+                        <a href="#" class="text-muted me-3 small">
+                            <i class="fas fa-question-circle me-1"></i> Help
+                        </a>
+                        <a href="#" class="text-muted me-3 small">
+                            <i class="fas fa-file-alt me-1"></i> Docs
+                        </a>
+                        <a href="#" class="text-muted small">
+                            <i class="fas fa-bug me-1"></i> Report Issue
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .admin-footer {
+        background: white;
+        border-top: 1px solid #e9ecef;
+        margin-top: 30px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.02);
+    }
+
+    .footer-left p {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .system-info {
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+
+    .footer-links a {
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+        .footer-links a:hover {
+            color: var(--primary-color) !important;
+        }
+
+    #dbStatus {
+        color: #28a745;
+        font-weight: 500;
+    }
+
+    #currentTime {
+        font-family: 'Courier New', monospace;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    #sessionTime {
+        font-weight: 500;
+        color: var(--warning-color);
+    }
+</style>
+
+<script>
+    // Update current time every second
+    function updateCurrentTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', {
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        document.getElementById('currentTime').textContent = timeString;
+    }
+
+    // Calculate and update session time
+    let sessionStartTime = new Date();
+    function updateSessionTime() {
+        const now = new Date();
+        const diffMs = now - sessionStartTime;
+        const diffMins = Math.floor(diffMs / 60000);
+        document.getElementById('sessionTime').textContent = `Session: ${diffMins}m`;
+    }
+
+    // Simulate database status check
+    function checkDatabaseStatus() {
+        // In real app, this would make an AJAX call to check DB connection
+        const statusElement = document.getElementById('dbStatus');
+        const isConnected = Math.random() > 0.1; // 90% chance of being connected (for demo)
+
+        if (isConnected) {
+            statusElement.textContent = 'Connected';
+            statusElement.style.color = '#28a745';
+        } else {
+            statusElement.textContent = 'Disconnected';
+            statusElement.style.color = '#dc3545';
+        }
+    }
+
+    // Initialize footer functionality
+    $(document).ready(function() {
+        // Start updating time
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
+
+        // Start updating session time
+        updateSessionTime();
+        setInterval(updateSessionTime, 60000); // Update every minute
+
+        // Check database status periodically
+        checkDatabaseStatus();
+        setInterval(checkDatabaseStatus, 30000); // Check every 30 seconds
+
+        // Add click handlers for footer links
+        $('.footer-links a[href*="Help"]').click(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Admin Help',
+                html: `
+                    <div class="text-start">
+                        <h6><i class="fas fa-info-circle text-primary me-2"></i>Quick Links:</h6>
+                        <ul>
+                            <li><a href="#" class="text-decoration-none">User Management Guide</a></li>
+                            <li><a href="#" class="text-decoration-none">Product Import Tutorial</a></li>
+                            <li><a href="#" class="text-decoration-none">Discount Configuration</a></li>
+                        </ul>
+                        <p class="text-muted mt-3">
+                            For immediate assistance, contact: <br>
+                            <i class="fas fa-envelope me-1"></i> support@motorshop.com
+                        </p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'OK'
+            });
+        });
+
+        $('.footer-links a[href*="Docs"]').click(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Documentation',
+                text: 'Admin documentation will open in a new window.',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Open Docs',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open('/docs/admin', '_blank');
+                }
+            });
+        });
+
+        $('.footer-links a[href*="Report"]').click(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Report Issue',
+                input: 'textarea',
+                inputLabel: 'Describe the issue',
+                inputPlaceholder: 'Please describe the issue you encountered...',
+                inputAttributes: {
+                    'aria-label': 'Describe the issue'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Submit Report',
+                cancelButtonText: 'Cancel',
+                showLoaderOnConfirm: true,
+                preConfirm: (description) => {
+                    if (!description) {
+                        Swal.showValidationMessage('Please describe the issue');
+                        return false;
+                    }
+                    // In real app, this would submit to server
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+                            resolve({ success: true });
+                        }, 1500);
+                    });
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Report Submitted!',
+                        text: 'Thank you for your feedback. We will review it soon.',
+                        icon: 'success'
+                    });
+                }
+            });
+        });
+
+        // Add system monitoring warnings
+        setInterval(function() {
+            // Check memory usage (simulated)
+            const memoryUsage = Math.random() * 100;
+            if (memoryUsage > 85) {
+                // Show warning toast
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'bottom-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
+
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'High system memory usage detected'
+                });
+            }
+        }, 60000); // Check every minute
+    });
+</script>
